@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -59,6 +60,10 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 //                .setExpiration(java.sql.Date.valueOf(LocalDate.now().plusDays(jwtConfig.getTokenExpirationAfterDays())))
                 .signWith(secretKey)
                 .compact();
-        response.addHeader(jwtConfig.getAuthorizationHeader(), jwtConfig.getTokenPrefix() + token);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(
+                "{\"" + jwtConfig.getAuthorizationHeader() + "\":\"" + jwtConfig.getTokenPrefix() + token + "\"}"
+        );
     }
 }
