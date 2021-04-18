@@ -8,6 +8,7 @@ import pl.sekowski.rent.water.equipment.item.permission.ItemPermissionWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -23,6 +24,11 @@ public class ItemService {
 
     public List<Item> getAllItems() {
         return itemRepository.findAll();
+    }
+
+    public Item getItemById(Long id){
+        Optional<Item> item = itemRepository.findById(id);
+        return item.orElse(null);
     }
 
     public List<Item> getItemsByCategories(Set<ItemCategoryWrapper> itemCategoryWrappers) {

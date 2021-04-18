@@ -40,6 +40,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
             // -for get all items
             "/api/items",
+            "/api/items/*",
 
             "/api/v1/registration",
 

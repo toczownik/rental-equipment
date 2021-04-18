@@ -9,6 +9,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping(path = "api/items")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ItemController {
 
     private final ItemService itemService;
@@ -19,8 +20,15 @@ public class ItemController {
     }
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:3000")
     public List<Item> getItems() {
         return itemService.getAllItems();
+    }
+
+    @GetMapping("/{id}")
+    @CrossOrigin(origins = "http://localhost:3000")
+    public Item getItemsById(@PathVariable Long id) {
+        return itemService.getItemById(id);
     }
 
     //TODO: probably useless
