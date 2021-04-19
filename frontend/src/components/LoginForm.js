@@ -46,12 +46,12 @@ const LoginForm = () => {
     fetchTest();
   };
 
+  const msg = "Niepoprawne dane do autoryzacji :(";
   return (
     <>
+      {showAlert && <AlertError msg={msg} setShow={setShowAlert} />}
+
       <Container className="formContainer">
-        {showAlert && (
-          <AlertError setShow={("nie poprawne dane logowania", setShowAlert)} />
-        )}
         <Form className="MyFormLogin">
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
