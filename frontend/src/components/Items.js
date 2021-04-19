@@ -11,6 +11,7 @@ const Items = () => {
 
   const fetchItems = async () => {
     const data = await fetch("http://localhost:8080/api/items");
+
     const items = await data.json();
     setItems(items);
   };

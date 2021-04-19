@@ -4,6 +4,7 @@ import MainPage from "./components/MainPage";
 import About from "./components/About";
 import LoginForm from "./components/LoginForm";
 import Items from "./components/Items";
+import ItemDetails from "./components/ItemsDetails";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 
@@ -17,7 +18,7 @@ const App = () => {
           <Route path="/about" component={About} />
           <Route path="/formLogin" component={LoginForm} />
           <Route path="/item" exact component={Items} />
-          {/* <Route path="/shop/:id" component={ItemDetails} /> */}
+          <Route path="/item/:id" component={ItemDetails} />
         </Switch>
       </div>
     </Router>
