@@ -5,6 +5,7 @@ import About from "./components/About";
 import LoginForm from "./components/LoginForm";
 import Items from "./components/Items";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./App.css";
 
 const App = () => {
   return (
