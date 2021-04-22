@@ -11,6 +11,7 @@ public class ItemLeasedController {
 
     private final ItemLeasedService itemLeasedService;
 
+    //TODO add security Ensure a particular user can only see their own user details or admin
     @PostMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public void makeLeased(@RequestBody LeasedRequest leasedRequest) {

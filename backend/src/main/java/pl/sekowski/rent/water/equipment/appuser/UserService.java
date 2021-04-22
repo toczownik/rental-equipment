@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -31,6 +32,10 @@ public class UserService implements UserDetailsService {
                 );
     }
 
+    public User getUserById(Long id){
+        Optional<User> user = userRepository.findById(id);
+        return user.orElse(null);
+    }
 
     //TODO: make return UUID
     public String signUser(User user){
