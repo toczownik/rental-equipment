@@ -1,20 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Button, Card, Container, Row } from "react-bootstrap";
+import { getAllItems } from "../helpers/ItemHelper";
 
 const Items = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetchItems();
+    getAllItems(setItems);
   }, []);
-
-  const fetchItems = async () => {
-    const data = await fetch("http://localhost:8080/api/items");
-
-    const items = await data.json();
-    setItems(items);
-  };
 
   return (
     <Container>

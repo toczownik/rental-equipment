@@ -5,10 +5,19 @@ import About from "./components/About";
 import LoginForm from "./components/LoginForm";
 import Items from "./components/Items";
 import ItemDetails from "./components/ItemsDetails";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import "./App.css";
+import { getIsLoginStorage } from "./helpers/HelperLocalStorage";
 
 const App = () => {
+  const isLogin = getIsLoginStorage();
+  const comp = () => <LoginForm />;
+
   return (
     <Router>
       <div className="App">
@@ -16,7 +25,9 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={MainPage} />
           <Route path="/about" component={About} />
-          <Route path="/formLogin" component={LoginForm} />
+          <Route path="/formLogin">
+            {isLogin ? <Redirect to="/about" /> : comp}
+          </Route>
           <Route path="/item" exact component={Items} />
           <Route path="/item/:id" component={ItemDetails} />
         </Switch>

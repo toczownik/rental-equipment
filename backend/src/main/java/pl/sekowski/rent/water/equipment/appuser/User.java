@@ -22,13 +22,15 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firsName;
+    @Column(name = "First_name")
+    private String firstName;
+    @Column(name = "last_name")
     private String lastName;
     private String email;
     private String password;
 
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     Set<ItemLeased> itemLeasedSet;
 
     @Enumerated(EnumType.STRING)
@@ -38,8 +40,8 @@ public class User implements UserDetails {
     private Boolean isCredentialsNonExpired;
     private Boolean isEnabled;
 
-    public User(String firsName, String lastName, String email, String password) {
-        this.firsName = firsName;
+    public User(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
@@ -53,7 +55,7 @@ public class User implements UserDetails {
     }
 
     public User(String firsName, String lastName, String email, String password, UserRole userRole) {
-        this.firsName = firsName;
+        this.firstName = firsName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
@@ -66,8 +68,8 @@ public class User implements UserDetails {
 
     }
 
-    public User(String firsName, String lastName, String email, String password, UserRole userRole, Boolean isAccountNonExpired, Boolean isAccountNonLocked, Boolean isCredentialsNonExpired, Boolean isEnabled) {
-        this.firsName = firsName;
+    public User(String firstName, String lastName, String email, String password, UserRole userRole, Boolean isAccountNonExpired, Boolean isAccountNonLocked, Boolean isCredentialsNonExpired, Boolean isEnabled) {
+        this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
@@ -86,7 +88,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return firsName;
+        return firstName;
     }
 
     @Override

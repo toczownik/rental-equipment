@@ -1,8 +1,16 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, Nav } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
+import { FaSignOutAlt } from "react-icons/fa";
 
 const Header = () => {
+  const isLogin = localStorage.getItem("isLogin");
+  const logOut = () => {
+    localStorage.clear();
+    <Redirect to="/" />;
+  };
+
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -14,7 +22,13 @@ const Header = () => {
             <Nav.Link href="/item">Items</Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link href="/formLogin">Login</Nav.Link>
+            {!isLogin ? (
+              <Nav.Link href="/formLogin">Login</Nav.Link>
+            ) : (
+              <Nav.Link href="formLogin" onClick={logOut}>
+                <FaSignOutAlt />
+              </Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

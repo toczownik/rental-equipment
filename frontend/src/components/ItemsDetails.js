@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { getItemById } from "../helpers/ItemHelper";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const ItemDetails = ({ match }) => {
+  const id = match.params.id;
+
   useEffect(() => {
-    fetchItem();
-    console.log(match);
+    getItemById(id, setItem);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [item, setItem] = useState({});
-
-  const fetchItem = async () => {
-    const fetchItem = await fetch(
-      `http://localhost:8080/api/items/${match.params.id}`
-    );
-    const item = await fetchItem.json();
-    console.log(item);
-    setItem(item);
-  };
 
   return (
     <div>

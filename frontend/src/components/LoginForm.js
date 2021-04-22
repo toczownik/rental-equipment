@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Button, Form, Container } from "react-bootstrap";
 import AlertError from "./Alert";
+import axios from "axios";
+import { setIsLoginStorage, setToken } from "../helpers/HelperLocalStorage";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -20,30 +22,29 @@ const LoginForm = () => {
     setShowAlert(false);
   }, []);
 
-  const login = (e) => {
-    e.preventDefault();
-    console.log("email: " + email);
-    console.log("pass: " + password);
+  const setVariableAfterLogin = (token) => {
+    setShowAlert(false);
+    setIsLoginStorage(true);
+    setToken(token);
+  };
 
-    const requestMsg = {
-      method: "POST",
-      // headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: email,
-        password: password,
-      }),
-    };
-    const fetchTest = async () => {
-      const data = await fetch("http://localhost:8080/login", requestMsg);
+  const login = (e) => {
+    // e.preventDefault();
+
+    const logIn = async () => {
       try {
-        const jwt = await data.json();
-        console.log(jwt);
+        const response = await axios.post("http://localhost:8080/login", {
+          username: email,
+          password: password,
+        });
+        const token = response.data;
+        setVariableAfterLogin(token);
       } catch (error) {
+        console.log(error);
         setShowAlert(true);
       }
     };
-
-    fetchTest();
+    logIn();
   };
 
   const msg = "Niepoprawne dane do autoryzacji :(";
