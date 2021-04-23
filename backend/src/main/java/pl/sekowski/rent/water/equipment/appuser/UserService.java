@@ -37,6 +37,11 @@ public class UserService implements UserDetailsService {
         return user.orElse(null);
     }
 
+    public User getUserByMail(String mail){
+        Optional<User> user = userRepository.findByEmail(mail);
+        return user.orElse(null);
+    }
+
     //TODO: make return UUID
     public String signUser(User user){
         boolean userExist = userRepository

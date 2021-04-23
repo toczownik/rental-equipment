@@ -2,14 +2,19 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, Nav } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaSignOutAlt, FaUserCircle } from "react-icons/fa";
+
+const logOut = () => {
+  localStorage.clear();
+  <Redirect to="/" />;
+};
 
 const Header = () => {
   const isLogin = localStorage.getItem("isLogin");
-  const logOut = () => {
-    localStorage.clear();
-    <Redirect to="/" />;
-  };
+  // const logOut = () => {
+  //   localStorage.clear();
+  //   <Redirect to="/" />;
+  // };
 
   return (
     <>
@@ -25,13 +30,25 @@ const Header = () => {
             {!isLogin ? (
               <Nav.Link href="/formLogin">Login</Nav.Link>
             ) : (
-              <Nav.Link href="formLogin" onClick={logOut}>
-                <FaSignOutAlt />
-              </Nav.Link>
+              <LoggedUser />
             )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+    </>
+  );
+};
+
+const LoggedUser = () => {
+  return (
+    <>
+      <Nav.Link>Witaj nazwa</Nav.Link>
+      <Nav.Link href="formLogin" onClick={logOut}>
+        <FaUserCircle />
+      </Nav.Link>
+      <Nav.Link href="formLogin" onClick={logOut}>
+        <FaSignOutAlt />
+      </Nav.Link>
     </>
   );
 };
