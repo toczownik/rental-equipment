@@ -4,6 +4,8 @@ import { Navbar, Nav } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import { FaSignOutAlt, FaUserCircle } from "react-icons/fa";
 
+import { getEmailStorage } from "../helpers/HelperLocalStorage";
+
 const logOut = () => {
   localStorage.clear();
   <Redirect to="/" />;
@@ -11,10 +13,6 @@ const logOut = () => {
 
 const Header = () => {
   const isLogin = localStorage.getItem("isLogin");
-  // const logOut = () => {
-  //   localStorage.clear();
-  //   <Redirect to="/" />;
-  // };
 
   return (
     <>
@@ -40,10 +38,12 @@ const Header = () => {
 };
 
 const LoggedUser = () => {
+  const mail = getEmailStorage();
+  console.log("mail ze3 storage " + mail);
+
   return (
     <>
-      <Nav.Link>Witaj nazwa</Nav.Link>
-      <Nav.Link href="formLogin" onClick={logOut}>
+      <Nav.Link href={`/userDatails/${mail}`}>
         <FaUserCircle />
       </Nav.Link>
       <Nav.Link href="formLogin" onClick={logOut}>

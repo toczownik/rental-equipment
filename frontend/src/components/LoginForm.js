@@ -3,7 +3,11 @@ import { useState, useEffect } from "react";
 import { Button, Form, Container } from "react-bootstrap";
 import AlertError from "./Alert";
 import axios from "axios";
-import { setIsLoginStorage } from "../helpers/HelperLocalStorage";
+import {
+  setIsLoginStorage,
+  setToken,
+  setEmailStorage,
+} from "../helpers/HelperLocalStorage";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -25,6 +29,8 @@ const LoginForm = () => {
   const setVariableAfterLogin = (token) => {
     setShowAlert(false);
     setIsLoginStorage(true);
+    setToken(token);
+    setEmailStorage(email);
   };
 
   const login = (e) => {
@@ -36,8 +42,9 @@ const LoginForm = () => {
           username: email,
           password: password,
         });
-        const token = response.data;
+        const token = response.data["Authorization"];
         setVariableAfterLogin(token);
+
         window.location.reload();
       } catch (error) {
         console.log(error);

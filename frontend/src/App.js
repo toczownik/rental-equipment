@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import { getIsLoginStorage } from "./helpers/HelperLocalStorage";
+import UserDetails from "./components/UserDetails";
 
 const App = () => {
   const isLogin = getIsLoginStorage();
@@ -30,6 +31,8 @@ const App = () => {
           </Route>
           <Route path="/item" exact component={Items} />
           <Route path="/item/:id" component={ItemDetails} />
+          <Route path="/userDatails/:id" component={UserDetails} />
+          userDatails
         </Switch>
       </div>
     </Router>

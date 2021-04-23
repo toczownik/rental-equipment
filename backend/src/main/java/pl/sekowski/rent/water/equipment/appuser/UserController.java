@@ -30,7 +30,7 @@ public class UserController {
         return userService.getUserById(id);
     }
 
-    @GetMapping("by-email/{mail}")
+    @GetMapping("/by-email/{mail}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public User getUserByMail(@PathVariable String mail){
         return userService.getUserByMail(mail);
