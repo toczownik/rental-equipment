@@ -3,6 +3,8 @@ package pl.sekowski.rent.water.equipment.appuser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import pl.sekowski.rent.water.equipment.item.Item;
+import pl.sekowski.rent.water.equipment.registration.RegistrationRequest;
 
 import java.util.List;
 
@@ -34,5 +36,11 @@ public class UserController {
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public User getUserByMail(@PathVariable String mail){
         return userService.getUserByMail(mail);
+    }
+
+    @PutMapping
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public void updateItem(@RequestBody UpdateUserRequest user) {
+        userService.updateUser(user);
     }
 }

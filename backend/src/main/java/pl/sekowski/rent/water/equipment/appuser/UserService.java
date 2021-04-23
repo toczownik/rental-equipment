@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.sekowski.rent.water.equipment.registration.RegistrationRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,7 @@ public class UserService implements UserDetailsService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-    public List<User> getAllUser(){
+    public List<User> getAllUser() {
         return userRepository.findAll();
     }
 
@@ -32,22 +33,40 @@ public class UserService implements UserDetailsService {
                 );
     }
 
-    public User getUserById(Long id){
+    public User getUserById(Long id) {
         Optional<User> user = userRepository.findById(id);
         return user.orElse(null);
     }
 
-    public User getUserByMail(String mail){
+    public User getUserByMail(String mail) {
         Optional<User> user = userRepository.findByEmail(mail);
         return user.orElse(null);
     }
 
+    public void updateUser(UpdateUserRequest user) {
+        System.out.println("to dostałem jako user plik userService " + user);
+        Optional<User> userDb = userRepository.findById(user.getId());
+        if ( userDb.isPresent() ){
+            User updateUser = userDb.get();
+            if ( !user.getEmail().equals("") ){
+                updateUser.setEmail(user.getEmail());
+            }
+            if ( !user.getFirstName().equals("") ){
+                updateUser.setFirstName(user.getFirstName());
+            }
+            if ( !user.getLastName().equals("") )
+                updateUser.setLastName(user.getLastName());
+            userRepository.save(updateUser);
+        }
+
+    }
+
     //TODO: make return UUID
-    public String signUser(User user){
+    public String signUser(User user) {
         boolean userExist = userRepository
                 .findByEmail(user.getEmail())
                 .isPresent();
-        if ( userExist ){
+        if (userExist) {
             // TODO check of attributes are the same and
             // TODO if email not confirmed send confirmation email.
 
