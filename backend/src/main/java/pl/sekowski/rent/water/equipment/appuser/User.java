@@ -46,7 +46,7 @@ public class User implements UserDetails {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        userRole = UserRole.USER;
+        userRole = UserRole.ROLE_USER;
         isAccountNonExpired = true;
         isAccountNonLocked = true;
         isCredentialsNonExpired = true;

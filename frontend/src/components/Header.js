@@ -39,8 +39,6 @@ const Header = () => {
 
 const LoggedUser = () => {
   const mail = getEmailStorage();
-  console.log("mail ze3 storage " + mail);
-
   return (
     <>
       <Nav.Link href={`/userDatails/${mail}`}>

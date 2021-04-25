@@ -41,6 +41,7 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
         String authorizationHeader = request.getHeader(jwtConfig.getAuthorizationHeader());
 
         if (Strings.isNullOrEmpty(authorizationHeader) || !authorizationHeader.startsWith(jwtConfig.getTokenPrefix())) {
+            System.out.println("bload jest bo auth");
             filterChain.doFilter(request, response);
             return;
         }
@@ -60,7 +61,7 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
             var authorities = (List<Map<String, String>>) body.get("authorities");
             //TODO: make something with 'new SimpleGrantedAuthority( "ROLE_" + m.get("authority")))'
             Set<SimpleGrantedAuthority> simpleGrantedAuthorities = authorities.stream()
-                    .map(m -> new SimpleGrantedAuthority("ROLE_" + m.get("authority")))
+                    .map(m -> new SimpleGrantedAuthority(m.get("authority")))
                     .collect(Collectors.toSet());
 
             Authentication authentication = new UsernamePasswordAuthenticationToken(

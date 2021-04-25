@@ -9,7 +9,8 @@ import pl.sekowski.rent.water.equipment.registration.RegistrationRequest;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="api/user")
+@CrossOrigin("*")
+@RequestMapping(path = "api/user")
 public class UserController {
 
     private final UserService userService;
@@ -21,26 +22,26 @@ public class UserController {
 
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userService.getAllUser();
     }
 
     //TODO add security Ensure a particular user can only see their own user details
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public User getUserById(@PathVariable Long id){
+    public User getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
     @GetMapping("/by-email/{mail}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public User getUserByMail(@PathVariable String mail){
+    public User getUserByMail(@PathVariable String mail) {
         return userService.getUserByMail(mail);
     }
 
-    @PutMapping
+    @PutMapping()
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public void updateItem(@RequestBody UpdateUserRequest user) {
-        userService.updateUser(user);
+    public void getUserById(@RequestBody UpdateUserRequest userRequest) {
+        userService.updateUser(userRequest);
     }
 }

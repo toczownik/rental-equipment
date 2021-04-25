@@ -18,7 +18,6 @@ async function getUserById(id, setItem) {
 async function getUserByEmail(id, setValue) {
   try {
     const token = getToken();
-    console.log(token);
     const header = {
       Authorization: token,
     };
@@ -34,4 +33,28 @@ async function getUserByEmail(id, setValue) {
   }
 }
 
-export { getUserById, getUserByEmail };
+async function updateUser(user) {
+  try {
+    const token = getToken();
+    const tempUser = {
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+    };
+
+    const response = await fetch("http://localhost:8080/api/user", {
+      method: "PUT",
+      body: JSON.stringify(tempUser),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: token,
+      },
+    });
+    return response.status;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export { getUserById, getUserByEmail, updateUser };

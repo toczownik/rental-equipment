@@ -50,7 +50,7 @@ public class ItemConfig {
             users.forEach(userService::signUser);
 
 
-            User userAdmin = new User("adminName", "adminSurname", "admin", "admin", UserRole.ADMIN);
+            User userAdmin = new User("adminName", "adminSurname", "admin", "admin", UserRole.ROLE_ADMIN);
             userService.signUser(userAdmin);
         };
     }
