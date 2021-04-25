@@ -44,4 +44,12 @@ public class UserController {
     public void getUserById(@RequestBody UpdateUserRequest userRequest) {
         userService.updateUser(userRequest);
     }
+
+
+    @PostMapping("/register")
+    public void registerUser(@RequestBody User user){
+        User u1 = new User(user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword());
+
+        userService.signUser(u1);
+    }
 }

@@ -56,7 +56,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
             "/api/items/*",
 
             "/api/v1/registration",
-
+            "/api/user/register",
             // -- swagger ui
             "/swagger-resources/**",
             "/swagger-ui.html",

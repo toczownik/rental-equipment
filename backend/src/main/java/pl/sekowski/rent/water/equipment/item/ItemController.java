@@ -2,6 +2,7 @@ package pl.sekowski.rent.water.equipment.item;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pl.sekowski.rent.water.equipment.appuser.User;
 import pl.sekowski.rent.water.equipment.item.category.ItemCategoryWrapper;
 
 import java.util.List;
