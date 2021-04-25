@@ -4,6 +4,7 @@ import MainPage from "./components/MainPage";
 import About from "./components/About";
 import LoginForm from "./components/LoginForm";
 import Items from "./components/Items";
+import RegistrationForm from "./components/RegistrationForm";
 import ItemDetails from "./components/ItemsDetails";
 import {
   BrowserRouter as Router,
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/item" exact component={Items} />
           <Route path="/item/:id" component={ItemDetails} />
           <Route path="/userDatails/:id" component={UserDetails} />
+          <Route path="/registration" component={RegistrationForm} />
           userDatails
         </Switch>
       </div>

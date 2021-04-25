@@ -1,4 +1,6 @@
 import axios from "axios";
+import { post } from "jquery";
+import { useState } from "react";
 import { getToken } from "../helpers/HelperLocalStorage";
 
 async function getUserById(id, setItem) {
@@ -57,4 +59,19 @@ async function updateUser(user) {
   }
 }
 
-export { getUserById, getUserByEmail, updateUser };
+async function signUp(user) {
+  try {
+    const response = await fetch("http://localhost:8080/api/user/register", {
+      method: "POST",
+      body: JSON.stringify(user),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+    return response.status;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export { getUserById, getUserByEmail, updateUser, signUp };

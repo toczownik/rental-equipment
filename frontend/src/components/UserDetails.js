@@ -99,7 +99,7 @@ const TempFormUserDetails = ({
             <Form.Control
               type="text"
               placeholder={userDetails.firstName}
-              value={userDetails.firstName}
+              defaultValue={userDetails.firstName}
               onChange={getfirstNameFromInput}
             />
           </Form.Group>
@@ -109,7 +109,7 @@ const TempFormUserDetails = ({
             <Form.Control
               type="text"
               placeholder={userDetails.lastName}
-              value={userDetails.lastName}
+              defaultValue={userDetails.lastName}
               onChange={getLastNameFromInput}
             />
           </Form.Group>
@@ -118,7 +118,7 @@ const TempFormUserDetails = ({
             <Form.Control
               type="email"
               placeholder={userDetails.email}
-              value={userDetails.email}
+              defaultValue={userDetails.email}
               onChange={getEmailFromInput}
             />
           </Form.Group>

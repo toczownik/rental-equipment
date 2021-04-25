@@ -85,6 +85,9 @@ const LoginForm = () => {
             Submit
           </Button>
         </Form>
+        <Form.Text className="text-muted">
+          Nie masz konta ? <a href="/registration">Rejestracja</a>
+        </Form.Text>
       </Container>
     </>
   );
