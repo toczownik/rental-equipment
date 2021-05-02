@@ -15,11 +15,20 @@ const ItemDetails = ({ match }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const [showOkAlert, setShowOkAlert] = useState(false);
+  const [activeButton, setActiveButton] = useState(true);
 
   useEffect(() => {
     const tempTotalPrice = calculateTotalPrice();
     setTotalPrice(tempTotalPrice);
   }, [startDate, endDate]);
+
+  useEffect(() => {
+    if (totalPrice > 0) {
+      setActiveButton(false);
+    } else {
+      setActiveButton(true);
+    }
+  }, [totalPrice]);
 
   const calculateTotalPrice = () => {
     return (
@@ -89,6 +98,7 @@ const ItemDetails = ({ match }) => {
             )}
           </Row>
           <Button
+            disabled={activeButton}
             onClick={async (e) => {
               e.preventDefault();
               const status = await addNewRentail(item.id, startDate, endDate);
