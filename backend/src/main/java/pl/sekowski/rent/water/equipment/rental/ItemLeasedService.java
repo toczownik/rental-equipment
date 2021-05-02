@@ -12,6 +12,7 @@ import pl.sekowski.rent.water.equipment.item.ItemRepository;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Service
 @AllArgsConstructor
@@ -29,6 +30,13 @@ public class ItemLeasedService {
         Optional<Item> itemOptional = itemRepository.findById(itemId);
         if (itemOptional.isEmpty())
             throw new IllegalArgumentException("item not found");
+        Collection<ItemLeased> currentLeased = itemLeasedRepository.getAllByItemId(itemId);
+        currentLeased.forEach(itemLeased -> {
+            if ( (itemLeased.getTimeFrom().isBefore(timeTo) && timeFrom.isBefore(itemLeased.getTimeTo())) ) {
+                throw new IllegalArgumentException("Item already rented");
+            }
+        });
+
         User user = userOptional.get();
         Item item = itemOptional.get();
         ItemLeased itemLeased = new ItemLeased(user, item, timeFrom, timeTo);
@@ -50,7 +58,7 @@ public class ItemLeasedService {
 
     }
 
-    public Collection<ItemLeased> getAllLeasedItemById(Long id){
+    public Collection<ItemLeased> getAllLeasedItemById(Long id) {
         return itemLeasedRepository.getAllByItemId(id);
     }
 
