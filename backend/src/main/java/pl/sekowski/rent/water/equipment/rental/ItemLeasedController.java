@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+
 @RestController
 @RequestMapping(path = "api/v1/rent")
 @AllArgsConstructor
@@ -27,5 +29,11 @@ public class ItemLeasedController {
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public void DeleteLeased(@RequestBody Long id) {
         itemLeasedService.deleteLeased(id);
+    }
+
+    @GetMapping("/{idItem}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public Collection<ItemLeased> getAllItemsById(@PathVariable Long idItem) {
+        return itemLeasedService.getAllLeasedItemById(idItem);
     }
 }

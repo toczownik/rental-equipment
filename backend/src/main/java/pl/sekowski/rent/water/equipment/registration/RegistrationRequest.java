@@ -6,7 +6,6 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @EqualsAndHashCode
-@ToString
 public class RegistrationRequest {
 
     private String firsName;

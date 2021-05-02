@@ -1,6 +1,5 @@
 package pl.sekowski.rent.water.equipment.rental;
 
-import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -11,6 +10,7 @@ import pl.sekowski.rent.water.equipment.item.Item;
 import pl.sekowski.rent.water.equipment.item.ItemRepository;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Optional;
 
 @Service
@@ -50,15 +50,8 @@ public class ItemLeasedService {
 
     }
 
-    //todo to delete
-    public void addNewLeased(User user, Item item, LocalDateTime timeFrom, LocalDateTime timeTo) {
-        ItemLeased itemLeased = new ItemLeased(
-                user,
-                item,
-                timeFrom,
-                timeTo
-        );
-        itemLeasedRepository.save(itemLeased);
+    public Collection<ItemLeased> getAllLeasedItemById(Long id){
+        return itemLeasedRepository.getAllByItemId(id);
     }
 
 }

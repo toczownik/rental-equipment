@@ -1,5 +1,6 @@
 package pl.sekowski.rent.water.equipment.rental;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,6 @@ import pl.sekowski.rent.water.equipment.item.Item;
 import pl.sekowski.rent.water.equipment.item.Unit;
 
 import javax.persistence.*;
-import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -19,6 +19,7 @@ import java.time.ZoneId;
 @Getter
 @Setter
 @EqualsAndHashCode
+@JsonIgnoreProperties({ "user", "item" })
 public class ItemLeased {
 
     @Id

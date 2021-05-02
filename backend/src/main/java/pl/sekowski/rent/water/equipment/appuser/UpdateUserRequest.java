@@ -6,7 +6,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @EqualsAndHashCode
-@ToString
+//@ToString
 public class UpdateUserRequest {
 
     private Long id;
