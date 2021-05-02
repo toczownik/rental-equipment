@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { getIsLoginStorage } from "../helpers/HelperLocalStorage";
 import { Button, Container, Row } from "react-bootstrap";
 import DataPicker from "./DataPicker";
+import { addNewRentail } from "../helpers/RentailHelper";
 
 const ItemDetails = ({ match }) => {
   const id = match.params.id;
@@ -66,7 +67,13 @@ const ItemDetails = ({ match }) => {
               <h2>Źle ustawione wartości</h2>
             )}
           </Row>
-          <Button>Dokonaj rezerwacji</Button>
+          <Button
+            onClick={() => {
+              addNewRentail(item.id, startDate, endDate);
+            }}
+          >
+            Dokonaj rezerwacji
+          </Button>
         </Container>
       )}
     </>
