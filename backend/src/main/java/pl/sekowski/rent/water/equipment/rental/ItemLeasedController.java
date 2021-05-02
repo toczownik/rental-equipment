@@ -33,7 +33,7 @@ public class ItemLeasedController {
 
     @GetMapping("/{idItem}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public Collection<ItemLeased> getAllItemsById(@PathVariable Long idItem) {
-        return itemLeasedService.getAllLeasedItemById(idItem);
+    public Collection<ItemLeased> getAllLeasedByItemId(@PathVariable Long idItem) {
+        return itemLeasedService.getAllLeasedByItemId(idItem);
     }
 }

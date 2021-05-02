@@ -23,4 +23,24 @@ async function addNewRentail(idItem, startDate, endDate) {
   }
 }
 
-export { addNewRentail };
+async function getAllRentailWithIdItem(idItem, setValue) {
+  const token = getToken();
+  try {
+    const response = await fetch(
+      `http://localhost:8080/api/v1/rent/${idItem}`,
+      {
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: token,
+        },
+      }
+    );
+    response.json().then((r) => {
+      setValue(r);
+    });
+  } catch (e) {
+    alert(e);
+  }
+}
+
+export { addNewRentail, getAllRentailWithIdItem };

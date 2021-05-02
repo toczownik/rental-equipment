@@ -6,6 +6,7 @@ import { Button, Container, Row } from "react-bootstrap";
 import DataPicker from "./DataPicker";
 import { addNewRentail } from "../helpers/RentailHelper";
 import { AlertError, AlertOk } from "./Alert";
+import RentalingItem from "./RentalingItem";
 
 const ItemDetails = ({ match }) => {
   const id = match.params.id;
@@ -96,6 +97,8 @@ const ItemDetails = ({ match }) => {
           >
             Dokonaj rezerwacji
           </Button>
+          <hr />
+          <RentalingItem id={id}></RentalingItem>
         </Container>
       )}
     </>

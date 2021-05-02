@@ -58,8 +58,9 @@ public class ItemLeasedService {
 
     }
 
-    public Collection<ItemLeased> getAllLeasedItemById(Long id) {
+    public Collection<ItemLeased> getAllLeasedByItemId(Long id) {
         return itemLeasedRepository.getAllByItemId(id);
     }
+
 
 }
