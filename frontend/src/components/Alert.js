@@ -12,4 +12,13 @@ const AlertError = ({ msg, setShow }) => {
   );
 };
 
-export default AlertError;
+const AlertOk = ({ msg, setShow }) => {
+  return (
+    <Alert variant="success" onClose={() => setShow(false)} dismissible>
+      <Alert.Heading>Yeah :)</Alert.Heading>
+      <p>{msg}</p>
+    </Alert>
+  );
+};
+
+export { AlertError, AlertOk };

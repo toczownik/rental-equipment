@@ -5,13 +5,15 @@ import { getIsLoginStorage } from "../helpers/HelperLocalStorage";
 import { Button, Container, Row } from "react-bootstrap";
 import DataPicker from "./DataPicker";
 import { addNewRentail } from "../helpers/RentailHelper";
+import { AlertError, AlertOk } from "./Alert";
 
 const ItemDetails = ({ match }) => {
   const id = match.params.id;
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [totalPrice, setTotalPrice] = useState(0);
-  const [responseStatus, setResponseStatus] = useState(0);
+  const [showErrorAlert, setShowErrorAlert] = useState(false);
+  const [showOkAlert, setShowOkAlert] = useState(false);
 
   useEffect(() => {
     const tempTotalPrice = calculateTotalPrice();
@@ -34,10 +36,27 @@ const ItemDetails = ({ match }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const showAlerts = (code) => {
+    if (code === 200) {
+      setShowErrorAlert(false);
+      setShowOkAlert(true);
+    } else {
+      setShowErrorAlert(true);
+      setShowOkAlert(false);
+    }
+  };
+
   const [item, setItem] = useState({});
+
+  const errorMsg = "Nie udało sie dokonać rezerwcji";
+  const okMsg = "Udało ci się dokonać rezerwacji";
 
   return (
     <>
+      {showErrorAlert && (
+        <AlertError msg={errorMsg} setShow={setShowErrorAlert} />
+      )}
+      {showOkAlert && <AlertOk msg={okMsg} setShow={setShowOkAlert} />}
       <div>
         <h2>Name of product: {item.name}</h2>
         <h3>Description: {item.description}</h3>
@@ -69,13 +88,10 @@ const ItemDetails = ({ match }) => {
             )}
           </Row>
           <Button
-            onClick={async () => {
-              const responseCode = await addNewRentail(
-                item.id,
-                startDate,
-                endDate
-              );
-              console.log(responseCode);
+            onClick={async (e) => {
+              e.preventDefault();
+              const status = await addNewRentail(item.id, startDate, endDate);
+              showAlerts(status);
             }}
           >
             Dokonaj rezerwacji

@@ -6,7 +6,7 @@ import {
 import { getUserByEmail, updateUser } from "../helpers/UserHelper";
 import { ListGroup, Card, Button } from "react-bootstrap";
 import { Form, Container } from "react-bootstrap";
-import AlertError from "./Alert";
+import { AlertError } from "./Alert";
 
 const UserDetails = () => {
   const [userDetails, setUserDetails] = useState({});

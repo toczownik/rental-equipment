@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, Container } from "react-bootstrap";
 import { signUp } from "../helpers/UserHelper";
-import AlertError from "./Alert";
+import { AlertError } from "./Alert";
 
 const RegistrationForm = () => {
   const [firstName, setFirstName] = useState("");

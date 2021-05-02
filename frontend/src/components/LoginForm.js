@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Button, Form, Container } from "react-bootstrap";
-import AlertError from "./Alert";
+import { AlertError } from "./Alert";
 import axios from "axios";
 import {
   setIsLoginStorage,
