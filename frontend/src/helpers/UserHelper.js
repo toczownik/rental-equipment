@@ -1,6 +1,4 @@
 import axios from "axios";
-import { post } from "jquery";
-import { useState } from "react";
 import { getToken } from "../helpers/HelperLocalStorage";
 
 async function getUserById(id, setItem) {
@@ -23,13 +21,13 @@ async function getUserByEmail(id, setValue) {
     const header = {
       Authorization: token,
     };
-    const response = await axios.get(
-      `http://localhost:8080/api/user/by-email/${id}`,
-      {
+    await axios
+      .get(`http://localhost:8080/api/user/by-email/${id}`, {
         headers: header,
-      }
-    );
-    setValue(response.data);
+      })
+      .then((response) => {
+        setValue(response.data);
+      });
   } catch (e) {
     console.log(e);
   }

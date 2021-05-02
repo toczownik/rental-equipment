@@ -1,6 +1,7 @@
 const IS_LOGIN = "isLogin";
 const TOKEN = "token";
 const EMAIL = "email";
+const ID = "user_id";
 
 const getIsLoginStorage = () => {
   const v = localStorage.getItem(IS_LOGIN);
@@ -17,7 +18,6 @@ const setToken = (value) => {
 };
 
 const getToken = () => {
-  //   console.log("token w funkcji pom " + localStorage.getItem(TOKEN));
   return localStorage.getItem(TOKEN);
 };
 
@@ -29,6 +29,14 @@ const getEmailStorage = () => {
   return localStorage.getItem(EMAIL);
 };
 
+const setIdStorage = (v) => {
+  localStorage.setItem(ID, v);
+};
+
+const getIdlStorage = () => {
+  return localStorage.getItem(ID);
+};
+
 export {
   getIsLoginStorage,
   setIsLoginStorage,
@@ -36,4 +44,6 @@ export {
   getToken,
   setEmailStorage,
   getEmailStorage,
+  setIdStorage,
+  getIdlStorage,
 };

@@ -7,12 +7,16 @@ import {
   setIsLoginStorage,
   setToken,
   setEmailStorage,
+  setIdStorage,
 } from "../helpers/HelperLocalStorage";
+
+import { getUserByEmail } from "../helpers/UserHelper";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  const [userDetails, setUserDetails] = useState({});
 
   const getEmailFromInput = (input) => {
     setEmail(input.target.value);
@@ -33,6 +37,10 @@ const LoginForm = () => {
     setEmailStorage(email);
   };
 
+  useEffect(() => {
+    setIdStorage(userDetails.id);
+  }, [userDetails]);
+
   const login = (e) => {
     e.preventDefault();
 
@@ -44,6 +52,7 @@ const LoginForm = () => {
         });
         const token = response.data["Authorization"];
         setVariableAfterLogin(token);
+        await getUserByEmail(email, setUserDetails);
 
         window.location.reload();
       } catch (error) {
