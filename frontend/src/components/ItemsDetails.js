@@ -11,6 +11,7 @@ const ItemDetails = ({ match }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [totalPrice, setTotalPrice] = useState(0);
+  const [responseStatus, setResponseStatus] = useState(0);
 
   useEffect(() => {
     const tempTotalPrice = calculateTotalPrice();
@@ -68,8 +69,13 @@ const ItemDetails = ({ match }) => {
             )}
           </Row>
           <Button
-            onClick={() => {
-              addNewRentail(item.id, startDate, endDate);
+            onClick={async () => {
+              const responseCode = await addNewRentail(
+                item.id,
+                startDate,
+                endDate
+              );
+              console.log(responseCode);
             }}
           >
             Dokonaj rezerwacji
