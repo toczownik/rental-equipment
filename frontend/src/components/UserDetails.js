@@ -58,9 +58,9 @@ const TempFormUserDetails = ({
   setEdit,
   setShowAlert,
 }) => {
-  const [email, setEmail] = useState("");
-  const [firstName, setfirstName] = useState("");
-  const [lastName, setLastName] = useState(userDetails.id);
+  const [email, setEmail] = useState(userDetails.email);
+  const [firstName, setfirstName] = useState(userDetails.firstName);
+  const [lastName, setLastName] = useState(userDetails.lastName);
 
   const getEmailFromInput = (input) => {
     setEmail(input.target.value);

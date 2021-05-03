@@ -20,6 +20,7 @@ const ItemDetails = ({ match }) => {
   useEffect(() => {
     const tempTotalPrice = calculateTotalPrice();
     setTotalPrice(tempTotalPrice);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [startDate, endDate]);
 
   useEffect(() => {
