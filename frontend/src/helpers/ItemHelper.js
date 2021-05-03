@@ -17,4 +17,11 @@ async function getNumeberItems(setValue) {
   });
 }
 
-export { getAllItems, getItemById, getNumeberItems };
+async function getPageItems(page, size) {
+  const response = await fetch(
+    `http://localhost:8080/api/items/listPageable?page=${page}&size=${size}`
+  );
+  return response;
+}
+
+export { getAllItems, getItemById, getNumeberItems, getPageItems };

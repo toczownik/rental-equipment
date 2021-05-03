@@ -1,8 +1,9 @@
 import React from "react";
 import { Container, Pagination } from "react-bootstrap";
+import { getPageItems } from "../helpers/ItemHelper";
 
-const Pageable = ({ countItems }) => {
-  const pageSize = 10;
+const Pageable = ({ countItems, setItems }) => {
+  const pageSize = 9;
   const numbersOfPage = Math.ceil(countItems / pageSize);
 
   //to generate arrya
@@ -13,8 +14,12 @@ const Pageable = ({ countItems }) => {
     );
   const arrayOfPageNum = range(1, numbersOfPage, 1);
 
-  const sendRequest = (number) => {
-    alert(number);
+  const sendRequest = async (number) => {
+    const response = await getPageItems(number - 1, pageSize);
+
+    response.json().then((response) => {
+      setItems(response.content);
+    });
   };
 
   return (

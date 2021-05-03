@@ -1,15 +1,14 @@
 package pl.sekowski.rent.water.equipment.item;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.sekowski.rent.water.equipment.item.category.ItemCategoryWrapper;
 import pl.sekowski.rent.water.equipment.item.permission.ItemPermissionWrapper;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -80,5 +79,9 @@ public class ItemService {
 
     public long getNumberOfProducts(){
         return itemRepository.count();
+    }
+
+    public Page<Item> getPageOfItem(Pageable pageable){
+        return itemRepository.findAll(pageable);
     }
 }

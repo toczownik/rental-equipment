@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Button, Card, Container, Row, Col } from "react-bootstrap";
-import { getAllItems, getNumeberItems } from "../helpers/ItemHelper";
+import { getNumeberItems, getPageItems } from "../helpers/ItemHelper";
 import Pageable from "./Pageable";
 
 const Items = () => {
@@ -9,8 +9,14 @@ const Items = () => {
   const [countItems, setCountItems] = useState(0);
 
   useEffect(() => {
-    getAllItems(setItems);
-    getNumeberItems(setCountItems);
+    async function fetchData() {
+      const response = await getPageItems(0, 9);
+      response.json().then((response) => {
+        setItems(response.content);
+      });
+      getNumeberItems(setCountItems);
+    }
+    fetchData();
   }, []);
 
   return (
@@ -31,7 +37,7 @@ const Items = () => {
           </Row>
         </Col>
       </Row>
-      <Pageable countItems={countItems}></Pageable>
+      <Pageable countItems={countItems} setItems={setItems}></Pageable>
     </Container>
   );
 };
