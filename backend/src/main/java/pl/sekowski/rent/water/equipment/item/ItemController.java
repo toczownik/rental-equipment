@@ -38,4 +38,9 @@ public class ItemController {
     public List<Item> getFilteredItems(@RequestBody ItemFilter itemFilter){
         return itemService.getFilteredItems(itemFilter);
     }
+
+    @GetMapping("/count")
+    public long getNumberOfAllRecords(){
+        return itemService.getNumberOfProducts();
+    }
 }

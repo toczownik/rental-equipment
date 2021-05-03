@@ -77,4 +77,8 @@ public class ItemService {
                 .orElseThrow(() -> new IllegalStateException("item with id" + id + " do not exist"));
         itemRepository.deleteById(id);
     }
+
+    public long getNumberOfProducts(){
+        return itemRepository.count();
+    }
 }
