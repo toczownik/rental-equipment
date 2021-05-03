@@ -10,4 +10,11 @@ async function getItemById(id, setItem) {
   setItem(response.data);
 }
 
-export { getAllItems, getItemById };
+async function getNumeberItems(setValue) {
+  const response = await fetch("http://localhost:8080/api/items/count");
+  response.json().then((t) => {
+    setValue(t);
+  });
+}
+
+export { getAllItems, getItemById, getNumeberItems };
