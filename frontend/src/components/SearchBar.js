@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-
+import {
+  getPageItems,
+  getPageItemsByNameAndCategories,
+} from "../helpers/ItemHelper";
 import { Container, ToggleButton, Row, Form, Button } from "react-bootstrap";
 
-const SearchBar = () => {
+const SearchBar = ({ setItems }) => {
   const [chackeBox, setCheckBox] = useState([]);
   const [itemNameInput, setItemNameInput] = useState("");
 
@@ -39,9 +42,43 @@ const SearchBar = () => {
     setItemNameInput(input.target.value);
   };
 
+  const boxSearchStyle = {
+    margin: "10px",
+  };
+
+  const cheackBoxStyle = {
+    textAlign: "left",
+    width: "100%",
+  };
+
+  const btnStyle = {
+    margin: "0px",
+    padding: "0px",
+    width: "100%",
+  };
+
+  const searchFun = async () => {
+    console.log(itemNameInput);
+    let idCategories = "";
+    for (let i = 0; i < chackeBox.length; i++) {
+      if (chackeBox[i].checked === true) idCategories += chackeBox[i].id + ",";
+    }
+    idCategories = idCategories.substring(0, idCategories.length - 1);
+    const res = await getPageItemsByNameAndCategories(
+      itemNameInput,
+      idCategories,
+      0,
+      12
+    );
+    res.json().then((r) => {
+      setItems(r.content);
+      console.log(r.content);
+    });
+  };
+
   return (
     <>
-      <Container>
+      <Container style={boxSearchStyle}>
         <Row>
           <Form.Control
             type="text"
@@ -52,18 +89,23 @@ const SearchBar = () => {
         {chackeBox.map((category) => (
           <Row key={getRandomInt()}>
             <ToggleButton
+              style={cheackBoxStyle}
               type="checkbox"
               variant="secondary"
               checked={category.checked}
-              value="1"
               onChange={() => checkClick(category)}
               key={category.id}
             >
+              {" "}
               {category.itemTypes}
             </ToggleButton>
           </Row>
         ))}
-        <Button>Szukaj</Button>
+        <Row>
+          <Button style={btnStyle} onClick={() => searchFun()}>
+            Szukaj
+          </Button>
+        </Row>
       </Container>
     </>
   );

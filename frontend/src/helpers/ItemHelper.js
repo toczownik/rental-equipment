@@ -10,12 +10,13 @@ async function getItemById(id, setItem) {
   setItem(response.data);
 }
 
-async function getNumeberItems(setValue) {
-  const response = await fetch("http://localhost:8080/api/items/count");
-  response.json().then((t) => {
-    setValue(t);
-  });
-}
+//todo propably useless
+// async function getNumeberItems(setValue) {
+//   const response = await fetch("http://localhost:8080/api/items/count");
+//   response.json().then((t) => {
+//     setValue(t);
+//   });
+// }
 
 async function getPageItems(page, size) {
   const response = await fetch(
@@ -24,4 +25,23 @@ async function getPageItems(page, size) {
   return response;
 }
 
-export { getAllItems, getItemById, getNumeberItems, getPageItems };
+async function getPageItemsByNameAndCategories(name, categories, page, size) {
+  //todo make this to read all categories
+  if (categories === "") {
+    categories = "1,2,3,4,5,6,7,8,9,10,11,12,13,14";
+  }
+  const response = await fetch(
+    `http://localhost:8080/api/items/filterItemsByNameAndCategory?name=${name}&idCategories=${categories}&page=${page}&size=${size}`
+  );
+  console.log("parametr wyszukania: " + name + " " + categories);
+  return response;
+}
+
+export {
+  getAllItems,
+  getItemById,
+  getPageItems,
+  getPageItemsByNameAndCategories,
+};
+
+// localhost:8080/api/items/filterItemsByNameAndCategory?name=p&idCategories=1&page=0&size=5

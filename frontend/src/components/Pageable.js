@@ -3,7 +3,8 @@ import { Container, Pagination } from "react-bootstrap";
 import { getPageItems } from "../helpers/ItemHelper";
 
 const Pageable = ({ countItems, setItems }) => {
-  const pageSize = 9;
+  //pagesie -> now 12 is set in Item.js file to
+  const pageSize = 12;
   const numbersOfPage = Math.ceil(countItems / pageSize);
 
   //to generate arrya

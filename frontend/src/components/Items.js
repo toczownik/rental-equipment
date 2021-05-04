@@ -1,7 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Button, Card, Container, Row, Col } from "react-bootstrap";
-import { getNumeberItems, getPageItems } from "../helpers/ItemHelper";
+import {
+  getPageItems,
+  getPageItemsByNameAndCategories,
+} from "../helpers/ItemHelper";
 import Pageable from "./Pageable";
 import SearchBar from "./SearchBar";
 
@@ -11,19 +14,24 @@ const Items = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await getPageItems(0, 9);
+      //pagesie -> now 12 is set in Pageable.js file to
+      const response = await getPageItems(0, 12);
       response.json().then((response) => {
+        console.log(response.totalElements);
         setItems(response.content);
+        setCountItems(response.totalElements);
       });
-      getNumeberItems(setCountItems);
     }
     fetchData();
   }, []);
 
   return (
-    <Container>
-      <SearchBar />
+    <Container fluid>
       <Row>
+        <Col xl={2}>
+          <SearchBar setItems={setItems}></SearchBar>
+        </Col>
+        <Col xl={2}></Col>
         <Col>
           <Row>
             {items.map((item) => (
