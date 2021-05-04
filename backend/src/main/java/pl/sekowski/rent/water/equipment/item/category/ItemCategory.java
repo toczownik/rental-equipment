@@ -6,4 +6,5 @@ public enum ItemCategory {
     BOATS,
     TOYS,
     FOR_KIDS,
+    ACCESSORIES
 }

@@ -32,15 +32,9 @@ public class ItemConfig {
             for (ItemCategory type : ItemCategory.values()) {
                 categoryWrapperList.add(new ItemCategoryWrapper(type));
             }
-            categoryWrapperList.forEach(e -> System.out.println(e.getItemTypes()));
             itemCategoryRepository.saveAll(categoryWrapperList);
 
-            List<Item> items = CsvReader.readItem("src/main/resources/csv.data/items.csv");
-            items.forEach(itemRepository::save);
-            items.forEach(i -> {
-                int temp =  (int)(i.getId() % categoryWrapperList.size());
-                    i.getItemCategorySet().add(categoryWrapperList.get(temp));
-            });
+            List<Item> items = CsvReader.readItem("src/main/resources/csv.data/items.csv", categoryWrapperList);
             items.forEach(itemRepository::save);
 
 
@@ -49,7 +43,6 @@ public class ItemConfig {
                 itemPermissionWrappers.add(new ItemPermissionWrapper(permission));
             }
             itemPermissionRepository.saveAll(itemPermissionWrappers);
-
 
             List<User> users = CsvReader.readUser("src/main/resources/csv.data/users.csv");
             users.forEach(userService::signUser);

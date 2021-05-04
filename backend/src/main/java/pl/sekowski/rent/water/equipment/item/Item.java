@@ -3,6 +3,7 @@ package pl.sekowski.rent.water.equipment.item;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.sekowski.rent.water.equipment.item.category.ItemCategory;
 import pl.sekowski.rent.water.equipment.item.category.ItemCategoryWrapper;
 import pl.sekowski.rent.water.equipment.item.permission.ItemPermissionWrapper;
 import pl.sekowski.rent.water.equipment.rental.ItemLeased;
@@ -27,7 +28,8 @@ public class Item {
     @JoinTable(
             name = "item_category_cross",
             joinColumns = {@JoinColumn(name = "id_item", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "item_category", referencedColumnName = "id")}
+            inverseJoinColumns = {@JoinColumn(name = "item_category", referencedColumnName = "id")
+            }
     )
     private Set<ItemCategoryWrapper> itemCategorySet;
     @OneToMany(mappedBy = "item")
@@ -54,6 +56,17 @@ public class Item {
         this.unit = unit;
         this.available = available;
         itemCategorySet = new HashSet<>();
+        itemLeasedSet = new HashSet<>();
+    }
+
+    public Item(String name, String description, Double pricePerUnit, Unit unit, Boolean available, ItemCategoryWrapper idCategory) {
+        this.name = name;
+        this.description = description;
+        this.pricePerUnit = pricePerUnit;
+        this.unit = unit;
+        this.available = available;
+        itemCategorySet = new HashSet<>();
+        itemCategorySet.add(idCategory);
         itemLeasedSet = new HashSet<>();
     }
 
