@@ -52,4 +52,10 @@ public class ItemController {
     public Page<Item> itemsPageable(Pageable pageable){
         return itemService.getPageOfItem(pageable);
     }
+
+    @GetMapping("/filterItemsByNameAndCategory")
+    public Page<Item> getItemsByNameAndIdCategory(@RequestParam String name,@RequestParam Long idCategory, Pageable pageable){
+        System.out.println(name + " " + idCategory + " " + pageable);
+        return itemService.getItemByNameAndIdPageable(name, idCategory, pageable);
+    }
 }

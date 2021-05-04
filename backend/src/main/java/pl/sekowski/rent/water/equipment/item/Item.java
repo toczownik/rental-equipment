@@ -53,6 +53,7 @@ public class Item {
         this.pricePerUnit = pricePerUnit;
         this.unit = unit;
         this.available = available;
+        itemCategorySet = new HashSet<>();
         itemLeasedSet = new HashSet<>();
     }
 

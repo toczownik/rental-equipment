@@ -28,15 +28,20 @@ public class ItemConfig {
             UserService userService
     ) {
         return args -> {
-
-            List<Item> items = CsvReader.readItem("src/main/resources/csv.data/items.csv");
-            items.forEach(itemRepository::save);
-
             List<ItemCategoryWrapper> categoryWrapperList = new ArrayList<>();
             for (ItemCategory type : ItemCategory.values()) {
                 categoryWrapperList.add(new ItemCategoryWrapper(type));
             }
+            categoryWrapperList.forEach(e -> System.out.println(e.getItemTypes()));
             itemCategoryRepository.saveAll(categoryWrapperList);
+
+            List<Item> items = CsvReader.readItem("src/main/resources/csv.data/items.csv");
+            items.forEach(itemRepository::save);
+            items.forEach(i -> {
+                int temp =  (int)(i.getId() % categoryWrapperList.size());
+                    i.getItemCategorySet().add(categoryWrapperList.get(temp));
+            });
+            items.forEach(itemRepository::save);
 
 
             List<ItemPermissionWrapper> itemPermissionWrappers = new ArrayList<>();

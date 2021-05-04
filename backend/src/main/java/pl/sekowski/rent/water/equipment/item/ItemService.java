@@ -72,8 +72,7 @@ public class ItemService {
     }
 
     public void deleteItem(Long id){
-        itemRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException("item with id" + id + " do not exist"));
+        itemRepository.findById(id).orElseThrow(() -> new IllegalStateException("item with id" + id + " do not exist"));
         itemRepository.deleteById(id);
     }
 
@@ -83,5 +82,9 @@ public class ItemService {
 
     public Page<Item> getPageOfItem(Pageable pageable){
         return itemRepository.findAll(pageable);
+    }
+    public Page<Item> getItemByNameAndIdPageable(String nameProduct, Long idCategory, Pageable pageable){
+        System.out.println(nameProduct + " " + idCategory + " " + pageable);
+        return itemRepository.filterItemsByNameAndCategory(nameProduct, idCategory, pageable);
     }
 }
