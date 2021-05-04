@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
@@ -16,7 +18,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
             + "inner join item_category_cross on item.id = item_category_cross.id_item "
             + "where item.item_name like %:name% "
             + "and"
-            + " item_category_cross.item_category = :category ",
+            + " item_category_cross.item_category in (:category) ",
             nativeQuery = true)
-    Page<Item> filterItemsByNameAndCategory(@Param("name") String name, @Param("category") Long id, Pageable pageable);
+    Page<Item> filterItemsByNameAndCategory(@Param("name") String name, @Param("category") List<Long> id, Pageable pageable);
 }

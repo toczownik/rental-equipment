@@ -54,8 +54,8 @@ public class ItemController {
     }
 
     @GetMapping("/filterItemsByNameAndCategory")
-    public Page<Item> getItemsByNameAndIdCategory(@RequestParam String name,@RequestParam Long idCategory, Pageable pageable){
-        System.out.println(name + " " + idCategory + " " + pageable);
-        return itemService.getItemByNameAndIdPageable(name, idCategory, pageable);
+    public Page<Item> getItemsByNameAndIdCategory(@RequestParam String name,@RequestParam List<Long> idCategories, Pageable pageable){
+        System.out.println(name + " " + idCategories + " " + pageable);
+        return itemService.getItemByNameAndIdPageable(name, idCategories, pageable);
     }
 }

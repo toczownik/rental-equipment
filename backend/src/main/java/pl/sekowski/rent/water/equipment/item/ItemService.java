@@ -83,7 +83,7 @@ public class ItemService {
     public Page<Item> getPageOfItem(Pageable pageable){
         return itemRepository.findAll(pageable);
     }
-    public Page<Item> getItemByNameAndIdPageable(String nameProduct, Long idCategory, Pageable pageable){
+    public Page<Item> getItemByNameAndIdPageable(String nameProduct, List<Long> idCategory, Pageable pageable){
         System.out.println(nameProduct + " " + idCategory + " " + pageable);
         return itemRepository.filterItemsByNameAndCategory(nameProduct, idCategory, pageable);
     }
