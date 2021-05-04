@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Button, Card, Container, Row, Col } from "react-bootstrap";
 import { getNumeberItems, getPageItems } from "../helpers/ItemHelper";
 import Pageable from "./Pageable";
+import SearchBar from "./SearchBar";
 
 const Items = () => {
   const [items, setItems] = useState([]);
@@ -21,6 +22,7 @@ const Items = () => {
 
   return (
     <Container>
+      <SearchBar />
       <Row>
         <Col>
           <Row>
