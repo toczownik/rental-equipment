@@ -1,14 +1,17 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import {
-  getPageItems,
-  getPageItemsByNameAndCategories,
-} from "../helpers/ItemHelper";
+import { getPageItemsByNameAndCategories } from "../helpers/ItemHelper";
 import { Container, ToggleButton, Row, Form, Button } from "react-bootstrap";
 
-const SearchBar = ({ setItems }) => {
+const SearchBar = ({
+  setItems,
+  itemNameInput,
+  setItemNameInput,
+  idCategories,
+  setIdCategories,
+  setCountItems,
+}) => {
   const [chackeBox, setCheckBox] = useState([]);
-  const [itemNameInput, setItemNameInput] = useState("");
 
   function getRandomInt() {
     const max = 1111111111111;
@@ -23,7 +26,6 @@ const SearchBar = ({ setItems }) => {
           Object.assign(t[i], { checked: false });
         }
         setCheckBox(t);
-        console.log(t);
       });
     }
     getCategories();
@@ -58,19 +60,26 @@ const SearchBar = ({ setItems }) => {
   };
 
   const searchFun = async () => {
-    console.log(itemNameInput);
-    let idCategories = "";
+    let tempIdCategories = "";
     for (let i = 0; i < chackeBox.length; i++) {
-      if (chackeBox[i].checked === true) idCategories += chackeBox[i].id + ",";
+      if (chackeBox[i].checked === true)
+        tempIdCategories += chackeBox[i].id + ",";
     }
-    idCategories = idCategories.substring(0, idCategories.length - 1);
+    tempIdCategories = tempIdCategories.substring(
+      0,
+      tempIdCategories.length - 1
+    );
+    //todo sprawdzic po co to jest
+    setIdCategories(tempIdCategories);
     const res = await getPageItemsByNameAndCategories(
       itemNameInput,
-      idCategories,
+      tempIdCategories,
       0,
       12
     );
     res.json().then((r) => {
+      setCountItems(r.totalElements);
+      console.log("liczba wszystkich elementow w serachbar " + r.totalElements);
       setItems(r.content);
       console.log(r.content);
     });

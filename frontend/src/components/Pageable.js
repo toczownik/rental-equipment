@@ -1,27 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Pagination } from "react-bootstrap";
-import { getPageItems } from "../helpers/ItemHelper";
 
-const Pageable = ({ countItems, setItems }) => {
-  //pagesie -> now 12 is set in Item.js file to
+import {
+  getPageItems,
+  getPageItemsByNameAndCategories,
+} from "../helpers/ItemHelper";
+
+const Pageable = ({ countItems, setItems, itemNameInput, idCategories }) => {
+  const [arrayOfPageNum, setArrayOfPageNum] = useState([]);
   const pageSize = 12;
-  const numbersOfPage = Math.ceil(countItems / pageSize);
 
-  //to generate arrya
-  const range = (start, stop, step) =>
+  let range = (start, stop, step) =>
     Array.from(
       { length: (stop - start) / step + 1 },
       (_, i) => start + i * step
     );
-  const arrayOfPageNum = range(1, numbersOfPage, 1);
 
   const sendRequest = async (number) => {
-    const response = await getPageItems(number - 1, pageSize);
+    number = number - 1;
+    if (itemNameInput !== "" || idCategories !== "") {
+      console.log("powinno być dobrze");
+      const res = await getPageItemsByNameAndCategories(
+        itemNameInput,
+        idCategories,
+        number,
+        12
+      );
+      res.json().then((r) => {
+        setItems(r.content);
+      });
+    } else {
+      const response = await getPageItems(number, pageSize);
 
-    response.json().then((response) => {
-      setItems(response.content);
-    });
+      response.json().then((response) => {
+        setItems(response.content);
+      });
+    }
   };
+
+  useEffect(() => {
+    console.log("zmiana w pageable coutnItems " + countItems);
+    setArrayOfPageNum(range(1, Math.ceil(countItems / pageSize), 1));
+  }, [countItems]);
 
   return (
     <Container>

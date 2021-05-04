@@ -1,16 +1,17 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Button, Card, Container, Row, Col } from "react-bootstrap";
-import {
-  getPageItems,
-  getPageItemsByNameAndCategories,
-} from "../helpers/ItemHelper";
+import { getPageItems } from "../helpers/ItemHelper";
 import Pageable from "./Pageable";
 import SearchBar from "./SearchBar";
 
 const Items = () => {
   const [items, setItems] = useState([]);
   const [countItems, setCountItems] = useState(0);
+
+  //do przekazania
+  const [itemNameInput, setItemNameInput] = useState("");
+  const [idCategories, setIdCategories] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -29,7 +30,14 @@ const Items = () => {
     <Container fluid>
       <Row>
         <Col xl={2}>
-          <SearchBar setItems={setItems}></SearchBar>
+          <SearchBar
+            setItems={setItems}
+            itemNameInput={itemNameInput}
+            setItemNameInput={setItemNameInput}
+            idCategories={idCategories}
+            setIdCategories={setIdCategories}
+            setCountItems={setCountItems}
+          ></SearchBar>
         </Col>
         <Col xl={2}></Col>
         <Col>
@@ -47,7 +55,13 @@ const Items = () => {
           </Row>
         </Col>
       </Row>
-      <Pageable countItems={countItems} setItems={setItems}></Pageable>
+      <Pageable
+        countItems={countItems}
+        setItems={setItems}
+        itemNameInput={itemNameInput}
+        idCategories={idCategories}
+        setIdCategories={setIdCategories}
+      ></Pageable>
     </Container>
   );
 };
