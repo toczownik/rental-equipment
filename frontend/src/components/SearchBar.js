@@ -79,9 +79,7 @@ const SearchBar = ({
     );
     res.json().then((r) => {
       setCountItems(r.totalElements);
-      console.log("liczba wszystkich elementow w serachbar " + r.totalElements);
       setItems(r.content);
-      console.log(r.content);
     });
   };
 

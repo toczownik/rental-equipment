@@ -18,7 +18,6 @@ const Items = () => {
       //pagesie -> now 12 is set in Pageable.js file to
       const response = await getPageItems(0, 12);
       response.json().then((response) => {
-        console.log(response.totalElements);
         setItems(response.content);
         setCountItems(response.totalElements);
       });

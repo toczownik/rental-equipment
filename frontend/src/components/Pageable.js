@@ -19,7 +19,6 @@ const Pageable = ({ countItems, setItems, itemNameInput, idCategories }) => {
   const sendRequest = async (number) => {
     number = number - 1;
     if (itemNameInput !== "" || idCategories !== "") {
-      console.log("powinno być dobrze");
       const res = await getPageItemsByNameAndCategories(
         itemNameInput,
         idCategories,
@@ -39,7 +38,6 @@ const Pageable = ({ countItems, setItems, itemNameInput, idCategories }) => {
   };
 
   useEffect(() => {
-    console.log("zmiana w pageable coutnItems " + countItems);
     setArrayOfPageNum(range(1, Math.ceil(countItems / pageSize), 1));
   }, [countItems]);
 

@@ -30,13 +30,9 @@ async function getPageItemsByNameAndCategories(name, categories, page, size) {
   if (categories === "") {
     categories = "1,2,3,4,5,6,7,8,9,10,11,12,13,14";
   }
-  console.log(
-    `http://localhost:8080/api/items/filterItemsByNameAndCategory?name=${name}&idCategories=${categories}&page=${page}&size=${size}`
-  );
   const response = await fetch(
     `http://localhost:8080/api/items/filterItemsByNameAndCategory?name=${name}&idCategories=${categories}&page=${page}&size=${size}`
   );
-  console.log("parametr wyszukania: " + name + " " + categories);
   return response;
 }
 
