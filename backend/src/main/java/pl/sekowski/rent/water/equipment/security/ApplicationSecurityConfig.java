@@ -47,6 +47,9 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
             "/api/items",
             "/api/items/*",
 
+            //for categories
+            "/api/categories",
+
             "/api/v1/registration",
             "/api/user/register",
             // -- swagger ui
