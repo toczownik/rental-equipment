@@ -15,6 +15,7 @@ import {
 import "./App.css";
 import { getIsLoginStorage } from "./helpers/HelperLocalStorage";
 import UserDetails from "./components/UserDetails";
+import Menagement from "./components/Menagement";
 
 const App = () => {
   const isLogin = getIsLoginStorage();
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/item/:id" component={ItemDetails} />
           <Route path="/userDatails/:id" component={UserDetails} />
           <Route path="/registration" component={RegistrationForm} />
+          <Route path="/menagment" component={Menagement} />
           userDatails
         </Switch>
       </div>

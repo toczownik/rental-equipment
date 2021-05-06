@@ -4,7 +4,10 @@ import { Navbar, Nav } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import { FaSignOutAlt, FaUserCircle } from "react-icons/fa";
 
-import { getEmailStorage } from "../helpers/HelperLocalStorage";
+import {
+  getEmailStorage,
+  getUserRoleStorage,
+} from "../helpers/HelperLocalStorage";
 
 const logOut = () => {
   localStorage.clear();
@@ -13,6 +16,7 @@ const logOut = () => {
 
 const Header = () => {
   const isLogin = localStorage.getItem("isLogin");
+  const userRole = getUserRoleStorage();
 
   return (
     <>
@@ -23,6 +27,7 @@ const Header = () => {
           <Nav className="mr-auto">
             <Nav.Link href="/about">About</Nav.Link>
             <Nav.Link href="/item">Items</Nav.Link>
+            {userRole && <Nav.Link href="/menagment">Menagment</Nav.Link>}
           </Nav>
           <Nav>
             {!isLogin ? (

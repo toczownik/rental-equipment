@@ -8,6 +8,7 @@ import {
   setToken,
   setEmailStorage,
   setIdStorage,
+  setRoleUser,
 } from "../helpers/HelperLocalStorage";
 
 import { getUserByEmail } from "../helpers/UserHelper";
@@ -39,6 +40,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     setIdStorage(userDetails.id);
+    setRoleUser(userDetails.userRole);
   }, [userDetails]);
 
   const login = (e) => {

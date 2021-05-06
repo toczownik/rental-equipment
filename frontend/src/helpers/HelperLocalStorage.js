@@ -2,6 +2,7 @@ const IS_LOGIN = "isLogin";
 const TOKEN = "token";
 const EMAIL = "email";
 const ID = "user_id";
+const ROLE = "user_role";
 
 const getIsLoginStorage = () => {
   const v = localStorage.getItem(IS_LOGIN);
@@ -37,6 +38,14 @@ const getIdlStorage = () => {
   return localStorage.getItem(ID);
 };
 
+const setRoleUser = (v) => {
+  localStorage.setItem(ROLE, v);
+};
+
+const getUserRoleStorage = () => {
+  return localStorage.getItem(ROLE);
+};
+
 export {
   getIsLoginStorage,
   setIsLoginStorage,
@@ -46,4 +55,6 @@ export {
   getEmailStorage,
   setIdStorage,
   getIdlStorage,
+  setRoleUser,
+  getUserRoleStorage,
 };
