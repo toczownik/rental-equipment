@@ -1,10 +1,39 @@
 import React from "react";
+import { Row, Col, Card, Container } from "react-bootstrap";
+import CustomCard from "./CustomCard";
 
 const Menagement = () => {
   return (
-    <div>
-      <p>menagement</p>
-    </div>
+    <>
+      <Container>
+        <Row>
+          <Col>
+            <CustomCard
+              title={"Użytkownicy"}
+              text={"tutej możesz edytowac użytkowników"}
+              imgUrl={"user.png"}
+              linkRedirect={""}
+            />
+          </Col>
+          <Col>
+            <CustomCard
+              title={"Przedioty"}
+              text={"tutej możesz edytować przedmioty"}
+              imgUrl={""}
+              linkRedirect={""}
+            />
+          </Col>
+          <Col>
+            <CustomCard
+              title={"wypozyczenia"}
+              text={"tutej możesz edytować wypożyczenia"}
+              imgUrl={""}
+              linkRedirect={""}
+            />
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 };
 
