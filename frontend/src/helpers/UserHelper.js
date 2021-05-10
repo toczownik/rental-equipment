@@ -72,4 +72,21 @@ async function signUp(user) {
   }
 }
 
-export { getUserById, getUserByEmail, updateUser, signUp };
+async function getAllUsers() {
+  const token = getToken();
+  try {
+    const response = await fetch("http://localhost:8080/api/user", {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: token,
+      },
+    });
+    // console.log(response.json());
+    return response;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export { getUserById, getUserByEmail, updateUser, signUp, getAllUsers };

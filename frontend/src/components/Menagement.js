@@ -12,7 +12,7 @@ const Menagement = () => {
               title={"Użytkownicy"}
               text={"tutej możesz edytowac użytkowników"}
               imgUrl={"user.png"}
-              linkRedirect={""}
+              linkRedirect={"/manegment/user"}
             />
           </Col>
           <Col>
