@@ -43,6 +43,14 @@ public class UserController {
         userService.updateUser(userRequest);
     }
 
+    @PutMapping("/all")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public void updateAllUserWithRole(@RequestBody UpdateUserWithRole updateUserWithRole) {
+//        return new UpdateUserWithRole(1L, "imie", "nazwiko", "email", UserRole.ROLE_ADMIN);
+        System.out.println("wchodzi do updateAllUserWithRole");
+        userService.updateUserWithRole(updateUserWithRole);
+    }
+
 
     @PostMapping("/register")
     public void registerUser(@RequestBody User user){

@@ -57,6 +57,31 @@ async function updateUser(user) {
   }
 }
 
+async function updateUserWithRole(user) {
+  try {
+    const token = getToken();
+    const tempUser = {
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      userRole: user.userRole,
+    };
+
+    const response = await fetch("http://localhost:8080/api/user/all", {
+      method: "PUT",
+      body: JSON.stringify(tempUser),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: token,
+      },
+    });
+    return response.status;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 async function signUp(user) {
   try {
     const response = await fetch("http://localhost:8080/api/user/register", {
@@ -89,4 +114,11 @@ async function getAllUsers() {
   }
 }
 
-export { getUserById, getUserByEmail, updateUser, signUp, getAllUsers };
+export {
+  getUserById,
+  getUserByEmail,
+  updateUser,
+  signUp,
+  getAllUsers,
+  updateUserWithRole,
+};

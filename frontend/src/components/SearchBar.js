@@ -7,7 +7,6 @@ const SearchBar = ({
   setItems,
   itemNameInput,
   setItemNameInput,
-  idCategories,
   setIdCategories,
   setCountItems,
 }) => {
