@@ -27,7 +27,9 @@ const Header = () => {
           <Nav className="mr-auto">
             <Nav.Link href="/about">About</Nav.Link>
             <Nav.Link href="/item">Items</Nav.Link>
-            {userRole && <Nav.Link href="/menagment">Menagment</Nav.Link>}
+            {userRole === "ROLE_ADMIN" && (
+              <Nav.Link href="/menagment">Menagment</Nav.Link>
+            )}
           </Nav>
           <Nav>
             {!isLogin ? (
