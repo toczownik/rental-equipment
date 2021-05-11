@@ -44,7 +44,7 @@ async function updateItem(item) {
         Authorization: token,
       },
     });
-    return response.status;
+    return response;
   } catch (e) {
     console.log(e);
   }

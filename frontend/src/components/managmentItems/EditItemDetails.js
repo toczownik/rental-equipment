@@ -111,8 +111,8 @@ const EditItemForm = ({ match }) => {
         </Form.Group>
       </Form>
       <Button
-        onClick={() => {
-          updateItem({
+        onClick={async () => {
+          const temp = await updateItem({
             id: item.id,
             name: name,
             description: description,
@@ -122,6 +122,8 @@ const EditItemForm = ({ match }) => {
             itemLeasedSet: item.itemLeasedSet,
             itemPermissionWrappers: item.itemPermissionWrappers,
           });
+
+          if (temp.status === 200) window.location.reload(false);
         }}
       >
         Aktulizuj informacje
