@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Card, Container } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import CustomCard from "./CustomCard";
 
 const Menagement = () => {
@@ -20,7 +20,7 @@ const Menagement = () => {
               title={"Przedioty"}
               text={"tutej możesz edytować przedmioty"}
               imgUrl={""}
-              linkRedirect={""}
+              linkRedirect={"/manegment/item"}
             />
           </Col>
           <Col>
