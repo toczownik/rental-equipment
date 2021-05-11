@@ -19,6 +19,7 @@ import Menagement from "./components/Menagement";
 import UserMangemnt from "./components/mangmentUser/UserMangemnt";
 import EditItemDetails from "./components/managmentItems/EditItemDetails";
 import AddNewItem from "./components/managmentItems/AddNewItem";
+import ManagementRentails from "./components/rentails/ManagementRentails";
 
 const App = () => {
   const isLogin = getIsLoginStorage();
@@ -46,6 +47,7 @@ const App = () => {
           <Route path="/registration" component={RegistrationForm} />
           <Route path="/menagment" exact component={Menagement} />
           <Route path="/manegment/user" component={UserMangemnt} />
+          <Route path="/manegment/rentails" component={ManagementRentails} />
           <Route
             path="/manegment/item"
             component={() => <Items text={"Edytuj"} baseUrl={"/editItem/"} />}

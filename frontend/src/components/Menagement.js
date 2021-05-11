@@ -36,10 +36,10 @@ const Menagement = () => {
           </Col>
           <Col>
             <CustomCard
-              title={"wypozyczenia"}
-              text={"tutej możesz edytować wypożyczenia"}
+              title={"Wypozyczenia"}
+              text={"tutej możesz przegladać wypozyczenia i je usuwać"}
               imgUrl={""}
-              linkRedirect={""}
+              linkRedirect={"/manegment/rentails"}
               textBtn={"Edytuj"}
             />
           </Col>
