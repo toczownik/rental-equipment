@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { getItemById } from "../helpers/ItemHelper";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getIsLoginStorage } from "../helpers/HelperLocalStorage";
 import { Button, Container, Row } from "react-bootstrap";
@@ -7,8 +6,9 @@ import DataPicker from "./DataPicker";
 import { addNewRentail } from "../helpers/RentailHelper";
 import { AlertError, AlertOk } from "./Alert";
 import RentalingItem from "./RentalingItem";
+import ItemDetails from "../ItemDetails";
 
-const ItemDetails = ({ match }) => {
+const ItemRentail = ({ match }) => {
   const id = match.params.id;
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -42,11 +42,6 @@ const ItemDetails = ({ match }) => {
     return Math.ceil((t2 - t1) / (1000 * 60 * 60 * 24));
   };
 
-  useEffect(() => {
-    getItemById(id, setItem);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const showAlerts = (code) => {
     if (code === 200) {
       setShowErrorAlert(false);
@@ -68,13 +63,7 @@ const ItemDetails = ({ match }) => {
         <AlertError msg={errorMsg} setShow={setShowErrorAlert} />
       )}
       {showOkAlert && <AlertOk msg={okMsg} setShow={setShowOkAlert} />}
-      <div>
-        <h2>Name of product: {item.name}</h2>
-        <h3>Description: {item.description}</h3>
-        <h3>Price per Unit: {item.pricePerUnit}</h3>
-        <h3>Unit: {item.unit}</h3>
-        <hr />
-      </div>
+      <ItemDetails match={match} item={item} setItem={setItem} />
       {getIsLoginStorage() && (
         <Container>
           <Row>
@@ -116,4 +105,4 @@ const ItemDetails = ({ match }) => {
   );
 };
 
-export default ItemDetails;
+export default ItemRentail;

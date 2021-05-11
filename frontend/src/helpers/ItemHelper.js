@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getToken } from "../helpers/HelperLocalStorage";
 
 async function getAllItems(setItems) {
   const response = await axios.get("http://localhost:8080/api/items");
@@ -10,13 +11,9 @@ async function getItemById(id, setItem) {
   setItem(response.data);
 }
 
-//todo propably useless
-// async function getNumeberItems(setValue) {
-//   const response = await fetch("http://localhost:8080/api/items/count");
-//   response.json().then((t) => {
-//     setValue(t);
-//   });
-// }
+async function getItemByIdFetch(id) {
+  return await fetch(`http://localhost:8080/api/items/${id}`);
+}
 
 async function getPageItems(page, size) {
   const response = await fetch(
@@ -36,11 +33,30 @@ async function getPageItemsByNameAndCategories(name, categories, page, size) {
   return response;
 }
 
+async function updateItem(item) {
+  try {
+    const token = getToken();
+    const response = await fetch("http://localhost:8080/api/management/item", {
+      method: "PUT",
+      body: JSON.stringify(item),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: token,
+      },
+    });
+    return response.status;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 export {
   getAllItems,
   getItemById,
   getPageItems,
   getPageItemsByNameAndCategories,
+  updateItem,
+  getItemByIdFetch,
 };
 
 // localhost:8080/api/items/filterItemsByNameAndCategory?name=p&idCategories=1&page=0&size=5

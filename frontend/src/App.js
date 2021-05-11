@@ -5,7 +5,7 @@ import About from "./components/About";
 import LoginForm from "./components/LoginForm";
 import Items from "./components/Items";
 import RegistrationForm from "./components/RegistrationForm";
-import ItemDetails from "./components/ItemsDetails";
+import ItemRentail from "./components/ItemRentail";
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,7 +17,7 @@ import { getIsLoginStorage } from "./helpers/HelperLocalStorage";
 import UserDetails from "./components/UserDetails";
 import Menagement from "./components/Menagement";
 import UserMangemnt from "./components/mangmentUser/UserMangemnt";
-import ItemsMenagments from "./components/managmentItems/ItemsMenagments";
+import EditItemDetails from "./components/managmentItems/EditItemDetails";
 
 const App = () => {
   const isLogin = getIsLoginStorage();
@@ -33,13 +33,21 @@ const App = () => {
           <Route path="/formLogin">
             {isLogin ? <Redirect to="/about" /> : comp}
           </Route>
-          <Route path="/item" exact component={Items} />
-          <Route path="/item/:id" component={ItemDetails} />
+          <Route
+            path="/item"
+            exact
+            component={() => <Items text={"Rezerwój"} baseUrl={"/item/"} />}
+          />
+          <Route path="/item/:id" component={ItemRentail} />
+          <Route path="/editItem/:id" component={EditItemDetails} />
           <Route path="/userDatails/:id" component={UserDetails} />
           <Route path="/registration" component={RegistrationForm} />
           <Route path="/menagment" exact component={Menagement} />
           <Route path="/manegment/user" component={UserMangemnt} />
-          <Route path="/manegment/item" component={ItemsMenagments} />
+          <Route
+            path="/manegment/item"
+            component={() => <Items text={"Edytuj"} baseUrl={"/editItem/"} />}
+          />
         </Switch>
       </div>
     </Router>

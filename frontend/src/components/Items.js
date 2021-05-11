@@ -5,7 +5,7 @@ import { getPageItems } from "../helpers/ItemHelper";
 import Pageable from "./Pageable";
 import SearchBar from "./SearchBar";
 
-const Items = () => {
+const Items = ({ text, baseUrl }) => {
   const [items, setItems] = useState([]);
   const [countItems, setCountItems] = useState(0);
 
@@ -43,11 +43,11 @@ const Items = () => {
           <Row>
             {items.map((item) => (
               <Card key={item.id} style={{ width: "18rem" }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
+                {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                 <Card.Body>
                   <Card.Title>{item.name}</Card.Title>
                   <Card.Text>{item.description}</Card.Text>
-                  <Button href={`/item/${item.id}`}>Read more</Button>{" "}
+                  <Button href={`${baseUrl}${item.id}`}>{text}</Button>{" "}
                 </Card.Body>
               </Card>
             ))}
