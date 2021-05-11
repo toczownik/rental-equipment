@@ -18,6 +18,7 @@ import UserDetails from "./components/UserDetails";
 import Menagement from "./components/Menagement";
 import UserMangemnt from "./components/mangmentUser/UserMangemnt";
 import EditItemDetails from "./components/managmentItems/EditItemDetails";
+import AddNewItem from "./components/managmentItems/AddNewItem";
 
 const App = () => {
   const isLogin = getIsLoginStorage();
@@ -40,6 +41,7 @@ const App = () => {
           />
           <Route path="/item/:id" component={ItemRentail} />
           <Route path="/editItem/:id" component={EditItemDetails} />
+          <Route path="/addItem/" component={AddNewItem} />
           <Route path="/userDatails/:id" component={UserDetails} />
           <Route path="/registration" component={RegistrationForm} />
           <Route path="/menagment" exact component={Menagement} />

@@ -13,6 +13,7 @@ const Menagement = () => {
               text={"tutej możesz edytowac użytkowników"}
               imgUrl={"user.png"}
               linkRedirect={"/manegment/user"}
+              textBtn={"Edytuj"}
             />
           </Col>
           <Col>
@@ -21,6 +22,16 @@ const Menagement = () => {
               text={"tutej możesz edytować przedmioty"}
               imgUrl={""}
               linkRedirect={"/manegment/item"}
+              textBtn={"Edytuj"}
+            />
+          </Col>
+          <Col>
+            <CustomCard
+              title={"Przedioty"}
+              text={"tutej możesz dodać przedmioty"}
+              imgUrl={""}
+              linkRedirect={"/addItem/"}
+              textBtn={"Dodaj"}
             />
           </Col>
           <Col>
@@ -29,6 +40,7 @@ const Menagement = () => {
               text={"tutej możesz edytować wypożyczenia"}
               imgUrl={""}
               linkRedirect={""}
+              textBtn={"Edytuj"}
             />
           </Col>
         </Row>

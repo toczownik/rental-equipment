@@ -50,6 +50,23 @@ async function updateItem(item) {
   }
 }
 
+async function addItem(item) {
+  try {
+    const token = getToken();
+    const response = await fetch("http://localhost:8080/api/management/item", {
+      method: "POST",
+      body: JSON.stringify(item),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: token,
+      },
+    });
+    return response;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 export {
   getAllItems,
   getItemById,
@@ -57,6 +74,7 @@ export {
   getPageItemsByNameAndCategories,
   updateItem,
   getItemByIdFetch,
+  addItem,
 };
 
 // localhost:8080/api/items/filterItemsByNameAndCategory?name=p&idCategories=1&page=0&size=5
