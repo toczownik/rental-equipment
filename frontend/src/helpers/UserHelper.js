@@ -82,6 +82,27 @@ async function updateUserWithRole(user) {
   }
 }
 
+async function apudateUserPassword(reqForNewPass) {
+  try {
+    const token = getToken();
+    const tempUser = {
+      userId: reqForNewPass.userId,
+      password: reqForNewPass.password,
+    };
+    const response = await fetch("http://localhost:8080/api/user/setPassword", {
+      method: "PUT",
+      body: JSON.stringify(tempUser),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: token,
+      },
+    });
+    return response.status;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 async function signUp(user) {
   try {
     const response = await fetch("http://localhost:8080/api/user/register", {
@@ -121,4 +142,5 @@ export {
   signUp,
   getAllUsers,
   updateUserWithRole,
+  apudateUserPassword,
 };

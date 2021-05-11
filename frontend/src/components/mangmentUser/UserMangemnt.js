@@ -10,7 +10,11 @@ import {
   ToggleButtonGroup,
 } from "react-bootstrap";
 import { setEmailStorage } from "../../helpers/HelperLocalStorage";
-import { getAllUsers, updateUserWithRole } from "../../helpers/UserHelper";
+import {
+  getAllUsers,
+  updateUserWithRole,
+  apudateUserPassword,
+} from "../../helpers/UserHelper";
 
 const UserMangemnt = () => {
   const [users, setUsers] = useState([]);
@@ -20,7 +24,7 @@ const UserMangemnt = () => {
 
     response.json().then((t) => {
       for (let i = 0; i < t.length; i++) {
-        Object.assign(t[i], { edit: false });
+        Object.assign(t[i], { edit: false, setPassword: false });
       }
       setUsers(t);
     });
@@ -39,6 +43,15 @@ const UserMangemnt = () => {
     setUsers(
       users.map((item) =>
         item.id === index ? { ...item, edit: !item.edit } : item
+      )
+    );
+  };
+
+  const clickEditPassword = (userToEdit) => {
+    let index = userToEdit.id;
+    setUsers(
+      users.map((item) =>
+        item.id === index ? { ...item, setPassword: !item.setPassword } : item
       )
     );
   };
@@ -63,9 +76,25 @@ const UserMangemnt = () => {
                   Edytuj
                 </Button>{" "}
               </Col>
+              <Col>
+                <Button
+                  onClick={() => {
+                    clickEditPassword(user);
+                  }}
+                >
+                  Zmień haslo
+                </Button>
+              </Col>
             </Row>
             {user.edit && (
               <UserEdit
+                user={user}
+                clickEditUser={clickEditUser}
+                refresh={refresh}
+              />
+            )}
+            {user.setPassword && (
+              <ChangePassword
                 user={user}
                 clickEditUser={clickEditUser}
                 refresh={refresh}
@@ -75,6 +104,37 @@ const UserMangemnt = () => {
         ))}
       </ListGroup>
     </>
+  );
+};
+
+const ChangePassword = ({ user }) => {
+  const [passwordInput, setPasswordInput] = useState("");
+  const getPasswrodFromInput = (input) => {
+    setPasswordInput(input.target.value);
+  };
+
+  const chengePass = () => {
+    if (passwordInput === "") {
+      alert("hasło nie moze być puste");
+    } else apudateUserPassword({ userId: user.id, password: passwordInput });
+  };
+
+  return (
+    <Container className="formContainer">
+      <Form>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Wpisz nowe hasło</Form.Label>
+          <Form.Control type="password" onChange={getPasswrodFromInput} />
+        </Form.Group>
+      </Form>
+      <Button
+        onClick={() => {
+          chengePass();
+        }}
+      >
+        Zmień hasło
+      </Button>
+    </Container>
   );
 };
 

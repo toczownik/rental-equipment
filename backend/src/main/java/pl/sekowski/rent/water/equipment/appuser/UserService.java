@@ -19,6 +19,7 @@ public class UserService implements UserDetailsService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
+
     public List<User> getAllUser() {
         return userRepository.findAll();
     }
@@ -80,6 +81,21 @@ public class UserService implements UserDetailsService {
         }
     }
 
+    public void updatePassword(UpdatePassword updatePassword){
+        Optional<User> userDb = userRepository.findById(updatePassword.getUserId());
+        if ( userDb.isPresent() ){
+            if ( !updatePassword.getPassword().equals("") ){
+                String encodePassword = bCryptPasswordEncoder.encode(updatePassword.getPassword());
+                userDb.get().setPassword(encodePassword);
+                userRepository.save(userDb.get());
+            }else{
+                throw new IllegalStateException("password can't be empty");
+            }
+        }else {
+            throw new IllegalStateException("user not exist");
+        }
+    }
+
     //TODO: make return UUID
     public String signUser(User user) {
         boolean userExist = userRepository
@@ -88,7 +104,6 @@ public class UserService implements UserDetailsService {
         if (userExist) {
             // TODO check of attributes are the same and
             // TODO if email not confirmed send confirmation email.
-
             String EMAIL_IS_ALREADY_EXIT = "email %s is already taken";
             throw new IllegalStateException(String.format(EMAIL_IS_ALREADY_EXIT, user.getEmail()));
         }

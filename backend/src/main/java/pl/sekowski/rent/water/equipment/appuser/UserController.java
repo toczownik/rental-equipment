@@ -44,11 +44,15 @@ public class UserController {
     }
 
     @PutMapping("/all")
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public void updateAllUserWithRole(@RequestBody UpdateUserWithRole updateUserWithRole) {
-//        return new UpdateUserWithRole(1L, "imie", "nazwiko", "email", UserRole.ROLE_ADMIN);
-        System.out.println("wchodzi do updateAllUserWithRole");
         userService.updateUserWithRole(updateUserWithRole);
+    }
+
+    @PutMapping("/setPassword")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public void updatePassword(@RequestBody UpdatePassword updatePassword) {
+        userService.updatePassword(updatePassword);
     }
 
 
