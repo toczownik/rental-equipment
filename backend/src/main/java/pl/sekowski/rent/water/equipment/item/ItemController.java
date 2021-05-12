@@ -2,12 +2,10 @@ package pl.sekowski.rent.water.equipment.item;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import pl.sekowski.rent.water.equipment.item.category.ItemCategoryWrapper;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 

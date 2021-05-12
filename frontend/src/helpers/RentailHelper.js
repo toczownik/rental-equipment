@@ -43,4 +43,45 @@ async function getAllRentailWithIdItem(idItem, setValue) {
   }
 }
 
-export { addNewRentail, getAllRentailWithIdItem };
+async function getPageOfRentails(page, size) {
+  const token = getToken();
+  try {
+    const response = await fetch(
+      `http://localhost:8080/api/v1/rent?page=${page}&size=${size}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: token,
+        },
+      }
+    );
+    return response;
+  } catch (e) {
+    alert(e);
+  }
+}
+
+async function deleteRentailById(id) {
+  const token = getToken();
+  try {
+    const response = await fetch(`http://localhost:8080/api/v1/rent/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: token,
+      },
+    });
+    console.log(response);
+    return response;
+  } catch (e) {
+    alert(e);
+  }
+}
+
+export {
+  addNewRentail,
+  getAllRentailWithIdItem,
+  getPageOfRentails,
+  deleteRentailById,
+};
