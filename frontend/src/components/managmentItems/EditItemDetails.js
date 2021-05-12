@@ -97,7 +97,7 @@ const EditItemForm = ({ match }) => {
           />
         </Form.Group>
         <Form.Group controlId="formBasicRole">
-          <Form.Label>Rola użytkownika</Form.Label>
+          <Form.Label>Jednostka wypożycznia</Form.Label>
           <ToggleButtonGroup
             name="options"
             type="radio"

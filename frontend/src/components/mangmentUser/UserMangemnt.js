@@ -15,6 +15,7 @@ import {
   updateUserWithRole,
   apudateUserPassword,
 } from "../../helpers/UserHelper";
+import { AlertError } from "../Alert";
 
 const UserMangemnt = () => {
   const [users, setUsers] = useState([]);
@@ -108,6 +109,7 @@ const UserMangemnt = () => {
 };
 
 const ChangePassword = ({ user }) => {
+  const [showError, setShowError] = useState(false);
   const [passwordInput, setPasswordInput] = useState("");
   const getPasswrodFromInput = (input) => {
     setPasswordInput(input.target.value);
@@ -115,12 +117,18 @@ const ChangePassword = ({ user }) => {
 
   const chengePass = () => {
     if (passwordInput === "") {
-      alert("hasło nie moze być puste");
-    } else apudateUserPassword({ userId: user.id, password: passwordInput });
+      setShowError(true);
+    } else {
+      setShowError(false);
+      apudateUserPassword({ userId: user.id, password: passwordInput });
+    }
   };
 
   return (
     <Container className="formContainer">
+      {showError && (
+        <AlertError msg={"Haslo nie moze byc puste"} setShow={setShowError} />
+      )}
       <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Wpisz nowe hasło</Form.Label>
@@ -228,7 +236,6 @@ const UserEdit = ({ user, clickEditUser, refresh }) => {
             variant="primary"
             type="submit"
             onClick={(e) => {
-              //todo pomyslec o hasle
               e.preventDefault();
               const status = updateUserWithRole({
                 id: user.id,
