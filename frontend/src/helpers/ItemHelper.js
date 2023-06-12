@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getToken } from "../helpers/HelperLocalStorage";
+import { getToken } from "./HelperLocalStorage";
 
 async function getAllItems(setItems) {
   const response = await axios.get("http://localhost:8080/api/items");

@@ -14,7 +14,7 @@
     <name>rent_water_equipment</name>
     <description>service to rent water equipment</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -43,8 +43,9 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.27</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -65,12 +66,13 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
+            <version>6.0.2</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-csv</artifactId>
-            <version>1.4</version>
+            <version>1.10.0</version>
         </dependency>
 
         <dependency>
@@ -93,6 +95,7 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
+            <version>5.7.7</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

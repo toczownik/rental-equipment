@@ -76,8 +76,6 @@ public class Item {
             return false;
         if (description.length() < 1)
             return false;
-        if (pricePerUnit <= 0)
-            return false;
-        return true;
+        return pricePerUnit > 0;
     }
 }

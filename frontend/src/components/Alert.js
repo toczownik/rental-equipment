@@ -1,6 +1,4 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.min.js";
 import { Alert } from "react-bootstrap";
 
 const AlertError = ({ msg, setShow }) => {

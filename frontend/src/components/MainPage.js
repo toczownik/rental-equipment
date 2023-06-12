@@ -1,5 +1,5 @@
 import React from "react";
-import { Carousel, Container } from "react-bootstrap";
+import { Carousel } from "react-bootstrap";
 import plaza from "../components/image/plaza.jpg";
 import kajak from "../components/image/kajak.jpg";
 import toys from "../components/image/toys.jpg";

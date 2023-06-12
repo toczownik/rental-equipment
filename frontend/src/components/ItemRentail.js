@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { getIsLoginStorage } from "../helpers/HelperLocalStorage";
 import { Button, Container, Row } from "react-bootstrap";
 import DataPicker from "./DataPicker";

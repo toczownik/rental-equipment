@@ -1,7 +1,6 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, Nav } from "react-bootstrap";
-import { Redirect } from "react-router-dom";
+import {redirect} from "react-router-dom";
 import { FaSignOutAlt, FaUserCircle } from "react-icons/fa";
 
 import {
@@ -11,7 +10,7 @@ import {
 
 const logOut = () => {
   localStorage.clear();
-  <Redirect to="/" />;
+  redirect("/");
 };
 
 const Header = () => {
@@ -48,7 +47,7 @@ const LoggedUser = () => {
   const mail = getEmailStorage();
   return (
     <>
-      <Nav.Link href={`/userDatails/${mail}`}>
+      <Nav.Link href={`/userDetails/${mail}`}>
         <FaUserCircle />
       </Nav.Link>
       <Nav.Link href="formLogin" onClick={logOut}>

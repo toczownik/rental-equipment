@@ -1,0 +1,43 @@
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  datasource:
+    password: root
+    url: jdbc:postgresql://localhost:5432/rental
+    username: postgres
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+  mail:
+    host: 127.0.0.2
+    port: 1025
+    username: hello
+    password: hello
+
+    properties:
+      mail:
+        smtp:
+          ssl:
+            trust: "*"
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
+
+application:
+  jwt:
+    secretKey: >-
+      $C&F)J@NcRfUjXn2r5u8x!A%D*G-KaPdSgVkYp3s6v9KaPdSgVkYp3s6v9y$BKaPdSgVkYp3s6v9y$BKaPdSgVkYp3s6v9y$BKaPdSgVkYp3s6v9y$By$B&E(H+MbQeThWmZq4t7
+    tokenPrefix: Bearer
+    tokenExpirationAfterDays: '14'

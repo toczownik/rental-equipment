@@ -4,7 +4,6 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import pl.sekowski.rent.water.equipment.item.Item;
 import pl.sekowski.rent.water.equipment.rental.ItemLeased;
 
 import javax.persistence.*;
@@ -16,7 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
+@Entity(name = "myuser")
 public class User implements UserDetails {
 
     @Id

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getToken } from "../helpers/HelperLocalStorage";
+import { getToken } from "./HelperLocalStorage";
 
 async function getUserById(id, setItem) {
   try {

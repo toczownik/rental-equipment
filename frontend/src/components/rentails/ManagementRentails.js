@@ -5,7 +5,6 @@ import {
   Row,
   Button,
   Container,
-  Jumbotron,
 } from "react-bootstrap";
 import {
   getPageOfRentails,
@@ -39,9 +38,9 @@ const ManagementRentails = () => {
     <>
       <Container fluid>
         {isEmpty() && (
-          <Jumbotron>
+          <div>
             <h1>Brak rezerwacji!</h1>
-          </Jumbotron>
+          </div>
         )}
         {!isEmpty() && (
           <ListGroup>

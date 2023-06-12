@@ -34,7 +34,7 @@ public class ItemConfig {
             }
             itemCategoryRepository.saveAll(categoryWrapperList);
 
-            List<Item> items = CsvReader.readItem("src/main/resources/csv.data/items.csv", categoryWrapperList);
+            List<Item> items = CsvReader.readItem("/home/toczownik/IdeaProjects/rentail-water-equipment/backend/src/main/resources/csv.data/items.csv", categoryWrapperList);
             items.forEach(itemRepository::save);
 
 
@@ -44,7 +44,7 @@ public class ItemConfig {
             }
             itemPermissionRepository.saveAll(itemPermissionWrappers);
 
-            List<User> users = CsvReader.readUser("src/main/resources/csv.data/users.csv");
+            List<User> users = CsvReader.readUser("/home/toczownik/IdeaProjects/rentail-water-equipment/backend/src/main/resources/csv.data/users.csv");
             users.forEach(userService::signUser);
 
 

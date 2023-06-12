@@ -1,4 +1,4 @@
-import { getToken, getIdlStorage } from "../helpers/HelperLocalStorage";
+import { getToken, getIdlStorage } from "./HelperLocalStorage";
 
 async function addNewRentail(idItem, startDate, endDate) {
   const token = getToken();
