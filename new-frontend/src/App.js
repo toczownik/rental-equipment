@@ -1,7 +1,7 @@
 import './App.css';
 import Header from "./components/Header";
 import {getIsLoginStorage} from "./helpers/LocalStorageHelper";
-import {BrowserRouter, redirect, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import MainPage from "./components/MainPage";
 import About from "./components/About";
 import UserManagement from "./components/user-management/UserManagement";
@@ -11,10 +11,10 @@ import AddNewItem from "./components/item-management/AddNewItem";
 import EditItemDetails from "./components/item-management/EditItemDetails";
 import RegistrationForm from "./components/RegistrationForm";
 import LoginForm from "./components/LoginForm";
-import RentalItem from "./components/RentalItem";
 import UserDetails from "./components/UserDetails";
 import Items from "./components/Items";
 import ItemRental from "./components/ItemRental";
+import Analytics from "./components/Analytics";
 
 function App() {
     const isLogin = getIsLoginStorage();
@@ -37,7 +37,7 @@ function App() {
                     <Route path="/management/user" element={<UserManagement/>} />
                     <Route path="/management/rentals" element={<RentalsManagement/>} />
                     <Route path="/management/item" element={<Items text={"Edytuj"} baseUrl={"/editItem/"} />} />
-                    <Route path="/analytics"/>
+                    <Route path="/analytics" element={<Analytics/>} />
                 </Routes>
             </BrowserRouter>
         </div>

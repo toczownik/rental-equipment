@@ -8,6 +8,8 @@ import {
 } from "react-bootstrap";
 import { addItem } from "../../helpers/ItemHelper";
 
+//TODO naprawić tworzenie
+
 const AddNewItem = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");

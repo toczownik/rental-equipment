@@ -143,8 +143,8 @@ const RegistrationForm = () => {
 const RegisterOk = () => {
   return (
     <>
-      <p>Udała ci się założyć konto</p>
-      <Button href="/formLogin">Zalogój się</Button>
+      <p>Udało ci się założyć konto</p>
+      <Button href="/formLogin">Zaloguj się</Button>
     </>
   );
 };
