@@ -1,7 +1,6 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { Button, Card, Container, Row, Col } from "react-bootstrap";
-import { getPageItems } from "../helpers/ItemHelper";
+import React, {useEffect, useState} from "react";
+import {Button, Card, Col, Container, Row} from "react-bootstrap";
+import {getPageItems} from "../helpers/ItemHelper";
 import Pageable from "./Pageable";
 import SearchBar from "./SearchBar";
 
@@ -14,7 +13,7 @@ const Items = ({ text, baseUrl }) => {
     const [idCategories, setIdCategories] = useState("");
 
     useEffect(() => {
-        async function fetchData() {
+        async function fetchData () {
             //pagesie -> now 12 is set in Pageable.js file to
             const response = await getPageItems(0, 12);
             response.json().then((response) => {
@@ -22,6 +21,7 @@ const Items = ({ text, baseUrl }) => {
                 setCountItems(response.totalElements);
             });
         }
+
         fetchData();
     }, []);
 

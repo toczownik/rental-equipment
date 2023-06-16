@@ -1,11 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {
-    Col,
-    ListGroup,
-    Row,
-    Button,
-    Container,
-} from "react-bootstrap";
+import React, {useEffect, useState} from "react";
+import {Button, Col, Container, ListGroup, Row,} from "react-bootstrap";
 import {deleteRentalById, getPageOfRentals} from "./helpers/RentalHelper";
 
 const RentalsManagement = () => {
@@ -15,7 +9,7 @@ const RentalsManagement = () => {
         return rentals.length === 0;
     };
 
-    async function fetchData() {
+    async function fetchData () {
         const response = await getPageOfRentals(0, 12);
         response.json().then((response) => {
             setRentals(response.content);

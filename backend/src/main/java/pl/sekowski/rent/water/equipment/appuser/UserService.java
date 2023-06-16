@@ -19,7 +19,6 @@ public class UserService implements UserDetailsService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-
     public List<User> getAllUser() {
         return userRepository.findAll();
     }
@@ -47,33 +46,33 @@ public class UserService implements UserDetailsService {
         //todo add log library
         System.out.println("to dostałem jako user plik userService " + user);
         Optional<User> userDb = userRepository.findById(user.getId());
-        if ( userDb.isPresent() ){
+        if (userDb.isPresent()) {
             User updateUser = userDb.get();
-            if ( !user.getEmail().equals("") ){
+            if (!user.getEmail().equals("")) {
                 updateUser.setEmail(user.getEmail());
             }
-            if ( !user.getFirstName().equals("") ){
+            if (!user.getFirstName().equals("")) {
                 updateUser.setFirstName(user.getFirstName());
             }
-            if ( !user.getLastName().equals("") )
+            if (!user.getLastName().equals(""))
                 updateUser.setLastName(user.getLastName());
             userRepository.save(updateUser);
         }
 
     }
 
-    public void updateUserWithRole(UpdateUserWithRole user){
+    public void updateUserWithRole(UpdateUserWithRole user) {
         Optional<User> userDb = userRepository.findById(user.getId());
 
-        if ( userDb.isPresent() ){
+        if (userDb.isPresent()) {
             User updateUser = userDb.get();
-            if ( !user.getEmail().equals("") ){
+            if (!user.getEmail().equals("")) {
                 updateUser.setEmail(user.getEmail());
             }
-            if ( !user.getFirstName().equals("") ){
+            if (!user.getFirstName().equals("")) {
                 updateUser.setFirstName(user.getFirstName());
             }
-            if ( !user.getLastName().equals("") )
+            if (!user.getLastName().equals(""))
                 updateUser.setLastName(user.getLastName());
             System.out.println("rola usera " + user.getUserRole());
             updateUser.setUserRole(user.getUserRole());
@@ -82,17 +81,17 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    public void updatePassword(UpdatePassword updatePassword){
+    public void updatePassword(UpdatePassword updatePassword) {
         Optional<User> userDb = userRepository.findById(updatePassword.getUserId());
-        if ( userDb.isPresent() ){
-            if ( !updatePassword.getPassword().equals("") ){
+        if (userDb.isPresent()) {
+            if (!updatePassword.getPassword().equals("")) {
                 String encodePassword = bCryptPasswordEncoder.encode(updatePassword.getPassword());
                 userDb.get().setPassword(encodePassword);
                 userRepository.save(userDb.get());
-            }else{
+            } else {
                 throw new IllegalStateException("password can't be empty");
             }
-        }else {
+        } else {
             throw new IllegalStateException("user not exist");
         }
     }
