@@ -24,6 +24,12 @@ public class UserController {
         return userService.getAllUser();
     }
 
+    @GetMapping("/getStats")
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<UserStats> getAllUsersStats() {
+        return userService.getAllUserStats();
+    }
+
     //TODO add security Ensure a particular user can only see their own user details
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
