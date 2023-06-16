@@ -41,9 +41,6 @@ public class ItemLeasedController {
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public void deleteLeased(@PathVariable  Long id) {
-        System.out.println("weszlo");//todo
-//        return null;
-
         itemLeasedService.deleteLeased(id);
     }
 

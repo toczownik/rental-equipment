@@ -50,13 +50,11 @@ public class UserService implements UserDetailsService {
     }
 
     public User getUserById(Long id) {
-        Optional<User> user = userRepository.findById(id);
-        return user.orElse(null);
+        return userRepository.findById(id).orElse(null);
     }
 
     public User getUserByMail(String mail) {
-        Optional<User> user = userRepository.findByEmail(mail);
-        return user.orElse(null);
+        return userRepository.findByEmail(mail).orElse(null);
     }
 
     public void updateUser(UpdateUserRequest user) {
