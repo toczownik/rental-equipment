@@ -7,8 +7,8 @@ import { AlertError, AlertOk } from "./Alert";
 import RentalItem from "./RentalItem";
 import ItemDetails from "../ItemDetails";
 
-const ItemRental = ({ match }) => {
-    const id = match.params.id;
+const ItemRental = () => {
+    const id = window.location.href.replace("http://localhost:3000/item/", "");
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const [totalPrice, setTotalPrice] = useState(0);
@@ -62,7 +62,7 @@ const ItemRental = ({ match }) => {
                 <AlertError msg={errorMsg} setShow={setShowErrorAlert} />
             )}
             {showOkAlert && <AlertOk msg={okMsg} setShow={setShowOkAlert} />}
-            <ItemDetails match={match} item={item} setItem={setItem} />
+            <ItemDetails itemId={id} item={item} setItem={setItem} />
             {getIsLoginStorage() && (
                 <Container>
                     <Row>

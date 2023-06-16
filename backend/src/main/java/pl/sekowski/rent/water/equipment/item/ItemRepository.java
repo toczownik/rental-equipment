@@ -14,6 +14,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     long count();
 
+    //jpq null
     @Query(value = "SELECT * FROM item "
             + "inner join item_category_cross on item.id = item_category_cross.id_item "
             + "where item.item_name like %:name% "

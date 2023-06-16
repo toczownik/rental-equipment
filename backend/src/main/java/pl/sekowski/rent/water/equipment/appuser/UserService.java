@@ -44,6 +44,7 @@ public class UserService implements UserDetailsService {
     }
 
     public void updateUser(UpdateUserRequest user) {
+        //todo add log library
         System.out.println("to dostałem jako user plik userService " + user);
         Optional<User> userDb = userRepository.findById(user.getId());
         if ( userDb.isPresent() ){

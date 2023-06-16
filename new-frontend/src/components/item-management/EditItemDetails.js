@@ -8,19 +8,21 @@ import {
   ToggleButtonGroup,
 } from "react-bootstrap";
 import { updateItem, getItemByIdFetch } from "../../helpers/ItemHelper";
-const EditItemDetails = ({ match }) => {
+const EditItemDetails = () => {
   const [item, setItem] = useState({});
+  const id = window.location.href.replace("http://localhost:3000/editItem/", "");
+
 
   return (
     <>
-      <ItemDetails match={match} item={item} setItem={setItem} />
-      <EditItemForm match={match} />
+      <ItemDetails itemId={id} item={item} setItem={setItem} />
+      <EditItemForm itemId={id} />
     </>
   );
 };
 
-const EditItemForm = ({ match }) => {
-  const id = match.params.id;
+const EditItemForm = () => {
+  const id = window.location.href.replace("http://localhost:3000/editItem/", "");
   const [item, setItem] = useState({});
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");

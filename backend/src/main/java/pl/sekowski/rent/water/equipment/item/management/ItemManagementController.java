@@ -20,7 +20,7 @@ public class ItemManagementController {
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public void addItem(@RequestBody Item item) {
-        item.setId(null);
+        item.setId(null); //todo usun spradz co idzie z frontu
         itemService.saveItem(item);
     }
 
