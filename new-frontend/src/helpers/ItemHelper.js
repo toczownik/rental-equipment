@@ -50,6 +50,7 @@ async function updateItem(item) {
 async function addItem(item) {
   try {
     const token = getToken();
+    console.log(JSON.stringify(item));
     return await fetch("http://localhost:8080/api/management/item", {
       method: "POST",
       body: JSON.stringify(item),

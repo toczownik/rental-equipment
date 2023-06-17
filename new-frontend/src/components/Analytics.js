@@ -1,5 +1,5 @@
 import {Container} from "react-bootstrap";
-import {Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis} from 'recharts';
+import {Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis} from 'recharts';
 import {getUsersStats} from "../helpers/UserHelper";
 import {useEffect, useState} from "react";
 
